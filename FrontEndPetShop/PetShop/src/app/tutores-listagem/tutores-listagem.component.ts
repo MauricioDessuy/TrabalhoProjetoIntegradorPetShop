@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 import { TutorService } from '../tutor.service';
 
@@ -10,10 +11,12 @@ import { TutorService } from '../tutor.service';
 export class TutoresListagemComponent implements OnInit {
 
   tutores: Array<any>;
+  tutor: any;
 
   constructor(private tutorService: TutorService) { }
 
   ngOnInit() {
+    this.tutor = {};
     this.listar();
   }
 
@@ -21,5 +24,13 @@ export class TutoresListagemComponent implements OnInit {
     this.tutorService.listar()
       .subscribe(dados => this.tutores = dados);
   }
+
+  adicionar(frm : FormGroup) {
+    this.tutorService.adicionar(this.tutor).subscribe(resposta => {
+      this.tutores.push(resposta);
+      frm.reset();
+    });
+  }
+
 
 }
