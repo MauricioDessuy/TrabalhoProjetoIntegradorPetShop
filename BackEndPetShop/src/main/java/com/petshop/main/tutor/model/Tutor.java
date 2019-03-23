@@ -1,5 +1,7 @@
 package com.petshop.main.tutor.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,17 +13,21 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class Tutor {
+@Table(name = "tutores")
+public class Tutor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @NotBlank
+    @Column(name = "nome")
     private String nome;
 
     @NotNull
     @Email
+    @Column(name = "email")
     private String email;
 
     public Long getId() {
