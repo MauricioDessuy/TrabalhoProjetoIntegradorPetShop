@@ -53,8 +53,6 @@ public class Pessoa implements Serializable {
     private String senha;
     
     @Email
-    @NotNull
-    @NotBlank
     @Column(name = "email")
     private String email;
     
