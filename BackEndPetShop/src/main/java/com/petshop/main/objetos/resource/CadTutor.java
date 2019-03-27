@@ -1,5 +1,7 @@
-package com.petshop.main.tutor.resource;
+package com.petshop.main.objetos.resource;
 
+import com.petshop.main.objetos.model.Tutor;
+import com.petshop.main.objetos.repository.TutorDAO;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,19 +18,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.petshop.main.tutor.model.Tutor;
-import com.petshop.main.tutor.repository.TutorDAO;
+
 
 @RestController
 @RequestMapping("/tutores")
-public class TutorResource {
+public class CadTutor {
 
     @Autowired
     private TutorDAO tutorDAO;
 
     @PostMapping
-    public Tutor adicionar(@Valid @RequestBody Tutor contato) {
-        return tutorDAO.save(contato);
+    public Tutor adicionar(@Valid @RequestBody Tutor tutor) {
+        return tutorDAO.save(tutor);
     }
 
     @GetMapping

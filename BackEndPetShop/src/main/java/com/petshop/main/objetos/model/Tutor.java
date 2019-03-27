@@ -1,4 +1,4 @@
-package com.petshop.main.tutor.model;
+package com.petshop.main.objetos.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;

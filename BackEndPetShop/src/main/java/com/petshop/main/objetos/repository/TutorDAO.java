@@ -1,8 +1,7 @@
-package com.petshop.main.tutor.repository;
+package com.petshop.main.objetos.repository;
 
+import com.petshop.main.objetos.model.Tutor;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.petshop.main.tutor.model.Tutor;
 
 public interface TutorDAO extends JpaRepository<Tutor, Long> {
 
