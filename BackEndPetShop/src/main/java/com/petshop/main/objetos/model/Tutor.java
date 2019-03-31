@@ -1,12 +1,14 @@
 package com.petshop.main.objetos.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -29,6 +31,10 @@ public class Tutor implements Serializable {
     @Email
     @Column(name = "email")
     private String email;
+    
+    @Column(name = "data_nascimento")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataNascimento;
 
     public Long getId() {
         return id;
@@ -54,6 +60,15 @@ public class Tutor implements Serializable {
         this.email = email;
     }
 
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    
     @Override
     public int hashCode() {
         final int prime = 31;
