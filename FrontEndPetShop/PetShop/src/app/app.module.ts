@@ -6,19 +6,22 @@ import { FormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import { TutoresListagemComponent } from './tutores-listagem/tutores-listagem.component';
 import { TutorService } from './tutor.service';
+import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
+import { PessoaService } from './pessoa.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TutoresListagemComponent
+    TutoresListagemComponent,
+    CadPessoaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [ TutorService ],
+  providers: [ TutorService, PessoaService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

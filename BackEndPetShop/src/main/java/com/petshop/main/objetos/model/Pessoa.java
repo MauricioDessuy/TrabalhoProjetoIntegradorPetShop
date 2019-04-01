@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "pessoas")
@@ -30,7 +31,6 @@ public class Pessoa implements Serializable {
     private String nome;
 
     @NotNull
-    @NotBlank
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "sexo")
     private SexoPessoa sexo;
@@ -38,6 +38,7 @@ public class Pessoa implements Serializable {
     @Column(name = "cpf")
     private String cpf;
     
+    @DateTimeFormat()
     @Column(name = "data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;

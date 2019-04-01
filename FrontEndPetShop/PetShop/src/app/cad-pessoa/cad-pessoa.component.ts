@@ -26,6 +26,7 @@ export class CadPessoaComponent implements OnInit {
   }
 
   adicionar(frm : FormGroup) {
+    this.pessoa.dataNascimento = new Date(this.pessoa.dataNascimento + ' 03:00:00 GMT');
     this.pessoaService.adicionar(this.pessoa).subscribe(resposta => {
       this.pessoas.push(resposta);
       frm.reset();
