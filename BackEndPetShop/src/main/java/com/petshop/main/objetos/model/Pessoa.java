@@ -38,7 +38,6 @@ public class Pessoa implements Serializable {
     @Column(name = "cpf")
     private String cpf;
     
-    @DateTimeFormat()
     @Column(name = "data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
