@@ -33,5 +33,11 @@ export class CadPessoaComponent implements OnInit {
     });
   }
 
+  deletar(id : any) {
+    this.pessoaService.deletar(id).subscribe(resposta => {
+      console.log(resposta);
+      this.listar();
+    });
+  }
 
 }

@@ -17,4 +17,8 @@ export class PessoaService {
     return this.http.post(this.pessoasUrl, pessoa);
   }
 
+  deletar(id : any) {
+    return this.http.delete(this.pessoasUrl + '/' + id)
+  }
+
 }

@@ -106,6 +106,8 @@
               <td>{{pessoa.dataNascimento | date: 'dd/MM/yyyy'}}</td>
 
               <td>{{pessoa.sexo}}</td>
+
+              <td><button (click)="deletar(pessoa.id)">Excluir</button></td>
             </tr>
           </tbody>
         </table>
