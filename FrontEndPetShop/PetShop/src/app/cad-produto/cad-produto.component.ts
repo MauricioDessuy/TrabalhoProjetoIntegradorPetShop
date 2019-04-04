@@ -1,0 +1,43 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { ProdutoService } from '../produto.service';
+
+@Component({
+  selector: 'app-cad-produto',
+  templateUrl: './cad-produto.component.html',
+  styleUrls: ['./cad-produto.component.css']
+})
+export class CadProdutoComponent implements OnInit {
+
+  produtos: Array<any>;
+  produto: any;
+
+  constructor(private produtoService: ProdutoService) { }
+
+  ngOnInit() {
+    this.produto = {};
+    this.listar();
+  }
+
+  listar() {
+    this.produtoService.listar()
+      .subscribe(dados => this.produtos = dados);
+  }
+
+  adicionar(frm : FormGroup) {
+    this.produto.valorUnitario = this.produto.valorUnitario.replace(",", ".");
+    this.produtoService.adicionar(this.produto).subscribe(resposta => {
+      this.produtos.push(resposta);
+      frm.reset();
+    });
+  }
+
+  deletar(id : any) {
+    this.produtoService.deletar(id).subscribe(resposta => {
+      console.log(resposta);
+      this.listar();
+    });
+  }
+
+}
