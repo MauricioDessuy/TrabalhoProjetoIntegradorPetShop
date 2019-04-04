@@ -8,20 +8,23 @@ import { TutoresListagemComponent } from './tutores-listagem/tutores-listagem.co
 import { TutorService } from './tutor.service';
 import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
 import { PessoaService } from './pessoa.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TutoresListagemComponent,
-    CadPessoaComponent
+    CadPessoaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [ TutorService, PessoaService ],
+  providers: [ TutorService, PessoaService, LoginService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

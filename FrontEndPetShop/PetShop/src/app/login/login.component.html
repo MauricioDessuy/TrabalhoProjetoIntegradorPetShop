@@ -1,0 +1,29 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container">
+      <h2>Login</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="logar(frm)">
+
+        <div class="form-group">
+          <label for="usuario">Usuário</label>
+          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario"
+            [(ngModel)]="login.usuario" required />
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha"
+            [(ngModel)]="login.senha" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Login</button>
+      </form>
+    </div>
+  </section>
+
+</main>

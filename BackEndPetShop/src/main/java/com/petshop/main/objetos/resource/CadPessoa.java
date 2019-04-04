@@ -8,6 +8,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +20,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
 
 @RestController
 @RequestMapping("/pessoas")
@@ -75,5 +76,15 @@ public class CadPessoa {
         pessoaDAO.delete(contato);
 
         return ResponseEntity.noContent().build();
+    }
+
+   // @RequestMapping("/pessoas/logar")
+    @PostMapping("/logar")
+    public boolean logar(@RequestBody Pessoa pessoa) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("usuario", GenericPropertyMatchers.ignoreCase()).withMatcher("senha", GenericPropertyMatchers.ignoreCase());
+        Example<Pessoa> example = Example.<Pessoa>of(pessoa, matcher);
+        boolean exists = pessoaDAO.exists(example);
+        return exists;
     }
 }
