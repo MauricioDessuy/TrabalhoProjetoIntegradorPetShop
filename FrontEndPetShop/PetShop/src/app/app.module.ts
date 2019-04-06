@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms'
-
+import {NgxMaskModule} from 'ngx-mask'
 import { AppComponent } from './app.component';
 import { TutoresListagemComponent } from './tutores-listagem/tutores-listagem.component';
 import { TutorService } from './tutor.service';
@@ -24,7 +24,8 @@ import { CadProdutoComponent } from './cad-produto/cad-produto.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, 
+    NgxMaskModule.forRoot()
   ],
   providers: [ TutorService, PessoaService, LoginService, ProdutoService ],
   bootstrap: [AppComponent]
