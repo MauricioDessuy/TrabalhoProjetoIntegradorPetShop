@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 import { ProdutoService } from '../produto.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class CadProdutoComponent implements OnInit {
   produtos: Array<any>;
   produto: any;
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private router: Router, private produtoService: ProdutoService) { }
 
   ngOnInit() {
     this.produto = {};

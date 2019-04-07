@@ -12,6 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
 import { ProdutoService } from './produto.service';
 import { CadProdutoComponent } from './cad-produto/cad-produto.component';
+import { AppRoutingModule} from './app-routing.module';
+import { Erro404Component } from './erro404/erro404.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -19,15 +22,17 @@ import { CadProdutoComponent } from './cad-produto/cad-produto.component';
     TutoresListagemComponent,
     CadPessoaComponent,
     LoginComponent,
-    CadProdutoComponent
+    CadProdutoComponent,
+    Erro404Component
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule, 
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    AppRoutingModule
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService ],
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

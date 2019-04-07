@@ -1,5 +1,18 @@
-<h1>Tutores</h1>
+<header *ngIf="mostrarMenu">
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/tutores-listagem">Tutores</a>
+            <a class="navbar-brand" routerLink="/cad-pessoa">Pessoas</a>
+            <a class="navbar-brand" routerLink="/cad-produto">Produtos</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</header>
 
 <hr />
 
-<app-tutores-listagem></app-tutores-listagem>
+<router-outlet></router-outlet>
