@@ -1,24 +1,25 @@
 package com.petshop.main.objetos.model;
 
-import com.petshop.main.utilitarios.SexoPessoa;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "pessoas")
-public class Pessoa implements Serializable {
+@Table(name = "animals")
+public class Animal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,35 +30,32 @@ public class Pessoa implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @NotNull
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "sexo")
-    private SexoPessoa sexo;
-
-    @Column(name = "cpf")
-    private String cpf;
+    @NotBlank
+    @Column(name = "raca")
+    private String raca;
 
     @Column(name = "data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
 
-    @NotNull
-    @NotBlank
-    @Column(name = "usuario")
-    private String usuario;
-
-    @NotNull
-    @NotBlank
-    @Column(name = "senha")
-    private String senha;
-
-    @Email
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "telefone")
-    private String telefone;
+    @Column(name = "data_obito")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataObito;
+ 
     
+    @Column(name = "id_pessoa")
+    private int idPessoa;
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+    
+
+   
     public Long getId() {
         return id;
     }
@@ -74,20 +72,12 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public SexoPessoa getSexo() {
-        return sexo;
+    public String getRaca() {
+        return raca;
     }
 
-    public void setSexo(SexoPessoa sexo) {
-        this.sexo = sexo;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setRaca(String raca) {
+        this.raca = raca;
     }
 
     public Date getDataNascimento() {
@@ -98,36 +88,12 @@ public class Pessoa implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public Date getDataObito() {
+        return dataObito;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setDataObito(Date dataObito) {
+        this.dataObito = dataObito;
     }
 
     @Override
@@ -149,7 +115,7 @@ public class Pessoa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Pessoa other = (Pessoa) obj;
+        Animal other = (Animal) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

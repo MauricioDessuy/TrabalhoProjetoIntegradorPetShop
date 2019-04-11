@@ -15,6 +15,8 @@ import { CadProdutoComponent } from './cad-produto/cad-produto.component';
 import { AppRoutingModule} from './app-routing.module';
 import { Erro404Component } from './erro404/erro404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CadAnimalComponent } from './cad-animal/cad-animal.component';
+import { AnimalService } from './animal.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthGuard } from './guards/auth.guard';
     CadPessoaComponent,
     LoginComponent,
     CadProdutoComponent,
-    Erro404Component
+    Erro404Component,
+    CadAnimalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { AuthGuard } from './guards/auth.guard';
     NgxMaskModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard ],
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

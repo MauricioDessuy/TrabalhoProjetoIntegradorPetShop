@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { PessoaService } from '../pessoa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -13,7 +14,7 @@ export class CadPessoaComponent implements OnInit {
   pessoas: Array<any>;
   pessoa: any;
 
-  constructor(private pessoaService: PessoaService) { }
+  constructor(private pessoaService: PessoaService, private router: Router) { }
 
   ngOnInit() {
     this.pessoa = {};
@@ -38,6 +39,11 @@ export class CadPessoaComponent implements OnInit {
       console.log(resposta);
       this.listar();
     });
+  }
+
+  cadastrarAnimal(id : any){
+    this.router.navigate([id+'/cad-animal']);
+
   }
 
 }

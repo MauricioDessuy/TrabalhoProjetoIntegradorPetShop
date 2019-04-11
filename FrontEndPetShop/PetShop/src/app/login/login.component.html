@@ -18,7 +18,7 @@
         <div class="form-group">
           <label for="senha">Senha</label>
           <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha"
-            [(ngModel)]="usuario.senha" />
+            [(ngModel)]="usuario.senha" required/>
         </div>
 
         <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Login</button>

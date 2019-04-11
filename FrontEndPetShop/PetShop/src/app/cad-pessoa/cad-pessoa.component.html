@@ -77,15 +77,6 @@
 
               <th class="w-25">CPF</th>
 
-              <th class="w-25">E-mail</th>
-
-              <th class="w-50">Telefone</th>
-
-              <th class="w-25">Usuário</th>
-
-              <th class="w-25">Data de Nascimento</th>
-
-              <th class="w-25">Sexo</th>
             </tr>
           </thead>
 
@@ -97,17 +88,8 @@
 
               <td>{{pessoa.cpf | mask: '000.000.000-00'}}</td>
 
-              <td>{{pessoa.email}}</td>
-
-              <td>{{pessoa.telefone | mask: '(00) 00000-0000'}}</td>
-
-              <td>{{pessoa.usuario}}</td>
-
-              <td>{{pessoa.dataNascimento | date: 'dd/MM/yyyy'}}</td>
-
-              <td>{{pessoa.sexo}}</td>
-
               <td><button (click)="deletar(pessoa.id)">Excluir</button></td>
+              <td><button (click)="cadastrarAnimal(pessoa.id)">Cadastrar Animal</button></td>
             </tr>
           </tbody>
         </table>
