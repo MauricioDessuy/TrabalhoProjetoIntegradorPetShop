@@ -1,12 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms'
-import {NgxMaskModule} from 'ngx-mask'
+import { FormsModule} from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 import { AppComponent } from './app.component';
-import { TutoresListagemComponent } from './tutores-listagem/tutores-listagem.component';
 import { TutorService } from './tutor.service';
-import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
 import { PessoaService } from './pessoa.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
@@ -17,23 +15,55 @@ import { Erro404Component } from './erro404/erro404.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadAnimalComponent } from './cad-animal/cad-animal.component';
 import { AnimalService } from './animal.service';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { 
+  MatButtonModule, 
+  MatCheckboxModule, 
+  MatInputModule, 
+  MatFormFieldModule, 
+  MatRippleModule,
+  MatDatepickerModule,
+  MatIconModule,
+  MatSelectModule,
+  MatOptionModule
+} from '@angular/material';
+import 'hammerjs';
+import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
+import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
+
+const materialModules = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatIconModule,
+  MatSelectModule,
+  MatOptionModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TutoresListagemComponent,
-    CadPessoaComponent,
     LoginComponent,
     CadProdutoComponent,
     Erro404Component,
-    CadAnimalComponent
+    CadAnimalComponent,
+    PessoaFormComponent,
+    CadPessoaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule, 
     NgxMaskModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    materialModules
+  ],
+  exports: [
+    materialModules
   ],
   providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService ],
   bootstrap: [AppComponent]

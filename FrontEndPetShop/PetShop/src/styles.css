@@ -1,2 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.container100 > * {
+    width: 100%;
+}
+
+.container60 > * {
+    width: 60%;
+}
+
+.container40 > * {
+    width: 40%;
+}
+
+.container20 > * {
+    width: 20%;
+}
+
+.centralizar > * {
+    text-align: center
+}
+
+.centralizarVertical > * {
+    margin-top: 15%;
+}

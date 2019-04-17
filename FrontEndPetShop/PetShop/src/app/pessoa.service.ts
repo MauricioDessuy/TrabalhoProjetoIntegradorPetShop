@@ -18,7 +18,15 @@ export class PessoaService {
   }
 
   deletar(id : any) {
-    return this.http.delete(this.pessoasUrl + '/' + id)
+    return this.http.delete(this.pessoasUrl + '/' + id);
+  }
+
+  buscar(id : any) {
+    return this.http.get<any>(this.pessoasUrl + '/' + id);
+  }
+
+  alterar(pessoa : any) {
+    return this.http.put<any>(this.pessoasUrl + '/' + pessoa.id, pessoa);
   }
 
 }

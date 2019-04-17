@@ -1,0 +1,83 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container centralizar">
+      <h2>Cadastro de pessoa</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+
+        <div class="form-group container60">
+          <mat-form-field appearance="legacy">
+            <mat-label for="nome">Nome</mat-label>
+            <input matInput id="nome" name="nome" placeholder="Nome" [(ngModel)]="pessoa.nome" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field appearance="legacy">
+            <mat-label for="cpf">CPF</mat-label>
+            <input matInput type="text" id="cpf" name="cpf" class="form-control" placeholder="000.000.000-00"
+              maxlength="14" mask='000.000.000-00' [clearIfNotMatch]="true" [(ngModel)]="pessoa.cpf" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <label for="data">Data Nascimento</label>
+          <input type="date" id="data" name="data" class="form-control" placeholder="Data"
+            [(ngModel)]="pessoa.dataNascimento" required />
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field>
+            <mat-label>Sexo</mat-label>
+            <mat-select matInput id="sexo" name="sexo" [(ngModel)]="pessoa.sexo">
+              <mat-option value="0" [value]="0">Masculino</mat-option>
+              <mat-option value="1" [value]="1">Feminino</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field appearance="legacy">
+            <mat-label for="telefone">Telefone</mat-label>
+            <input matInput type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" maxlength="16"
+              mask='(00) 00000-0000' [clearIfNotMatch]='true' [(ngModel)]="pessoa.telefone" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container60">
+          <mat-form-field appearance="legacy">
+            <mat-label for="email">E-mail</mat-label>
+            <input matInput type="email" id="email" name="email" placeholder="E-mail" [(ngModel)]="pessoa.email"
+              required email />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container40">
+          <mat-form-field appearance="legacy">
+            <mat-label for="usuario">Usuário</mat-label>
+            <input matInput type="text" id="usuario" name="usuario" placeholder="Usuario" [(ngModel)]="pessoa.usuario"
+              required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field appearance="legacy">
+            <mat-label for="senha">Senha</mat-label>
+            <input matInput type="password" id="senha" name="senha" class="form-control" placeholder="Senha"
+              [(ngModel)]="pessoa.senha" />
+          </mat-form-field>
+        </div>
+
+        <button *ngIf="inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Adicionar</button>
+
+        <button *ngIf="!inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Alterar</button>
+      </form>
+    </div>
+  </section>
+</main>

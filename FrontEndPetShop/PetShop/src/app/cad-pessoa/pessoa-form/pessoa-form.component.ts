@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-
-import { PessoaService } from '../pessoa.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { PessoaService } from '../../pessoa.service';
 
 @Component({
-  selector: 'app-cad-pessoa',
-  templateUrl: './cad-pessoa.component.html',
-  styleUrls: ['./cad-pessoa.component.css']
+  selector: 'app-pessoa-form',
+  templateUrl: './pessoa-form.component.html',
+  styleUrls: ['./pessoa-form.component.css']
 })
-export class CadPessoaComponent implements OnInit {
+export class PessoaFormComponent implements OnInit {
 
-  pessoas: Array<any>;
   pessoa: any;
   idPessoa: any;
   inclusao: boolean;
@@ -26,18 +24,21 @@ export class CadPessoaComponent implements OnInit {
       this.buscar(this.idPessoa);
       this.inclusao = false;
     }
-    this.listar();
   }
 
-  listar() {
-    this.pessoaService.listar()
-      .subscribe(dados => this.pessoas = dados);
-  }
-
-  deletar(id: any) {
-    this.pessoaService.deletar(id).subscribe(resposta => {
-      this.listar();
-    });
+  adicionar(frm: FormGroup) {
+    this.pessoa.dataNascimento = new Date(this.pessoa.dataNascimento + ' 03:00:00 GMT');
+    if (this.inclusao) {
+      this.pessoaService.adicionar(this.pessoa).subscribe(resposta => {
+        this.router.navigate(['cad-pessoa']);
+        frm.reset();
+      });
+    } else {
+      this.pessoaService.alterar(this.pessoa).subscribe(resposta => {
+        this.router.navigate(['cad-pessoa']);
+        frm.reset();
+      });
+    }
   }
 
   buscar(id: any) {
@@ -49,18 +50,6 @@ export class CadPessoaComponent implements OnInit {
       }
       this.pessoa = resposta;
     });
-  }
-
-  redirecionarParaAlteracao(id: any) {
-    this.router.navigate(['cad-pessoa/' + id]);
-  }
-
-  cadastrarAnimal(id: any) {
-    this.router.navigate([id + '/cad-animal']);
-  }
-
-  irParaNovo() {
-    this.router.navigate(['cad-pessoa/novo']);
   }
 
 }

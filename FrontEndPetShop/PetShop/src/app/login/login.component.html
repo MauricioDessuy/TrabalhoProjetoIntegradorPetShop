@@ -1,29 +1,28 @@
 <main role="main">
-  <section class="my-4">
-    <div class="container">
-      <h2>Login</h2>
-    </div>
-  </section>
+  <div class="centralizarVertical">
+    <section>
+      <div class="container centralizar">
+        <h2 class="centralizar">Login</h2>
+        <form method="post" #frm="ngForm" (ngSubmit)="logar(frm)">
+          <div class="form-group container40 centralizar">
+            <mat-form-field appearance="legacy">
+              <mat-label for="usuario">Usuário</mat-label>
+              <input matInput type="text" id="usuario" name="usuario" placeholder="usuario"
+                [(ngModel)]="usuario.usuario" required />
+            </mat-form-field>
+          </div>
 
-  <section>
-    <div class="container">
-      <form method="post" #frm="ngForm" (ngSubmit)="logar(frm)">
+          <div class="form-group container40 centralizar">
+            <mat-form-field appearance="legacy">
+              <mat-label for="senha">Senha</mat-label>
+              <input matInput type="password" id="senha" name="senha" placeholder="Senha" [(ngModel)]="usuario.senha"
+                required />
+            </mat-form-field>
+          </div>
 
-        <div class="form-group">
-          <label for="usuario">Usuário</label>
-          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario"
-            [(ngModel)]="usuario.usuario" required />
-        </div>
-
-        <div class="form-group">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha"
-            [(ngModel)]="usuario.senha" required/>
-        </div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Login</button>
-      </form>
-    </div>
-  </section>
-
+          <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Login</button>
+        </form>
+      </div>
+    </section>
+  </div>
 </main>
