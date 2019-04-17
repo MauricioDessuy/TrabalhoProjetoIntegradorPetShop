@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,30 +35,31 @@ public class CadProduto {
 
     @GetMapping
     public List<Produto> listar() {
-        return produtoDAO.findAll();
+        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
+        return produtoDAO.findAll(ordenador);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscar(@PathVariable Long id) {
-        Produto contato = produtoDAO.findOne(id);
+        Produto produto = produtoDAO.findOne(id);
 
-        if (contato == null) {
+        if (produto == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(contato);
+        return ResponseEntity.ok(produto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Produto contato) {
+            @Valid @RequestBody Produto produto) {
         Produto existente = produtoDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(contato, existente, "id");
+        BeanUtils.copyProperties(produto, existente, "id");
 
         existente = produtoDAO.save(existente);
 
@@ -66,13 +68,13 @@ public class CadProduto {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Produto contato = produtoDAO.findOne(id);
+        Produto produto = produtoDAO.findOne(id);
 
-        if (contato == null) {
+        if (produto == null) {
             return ResponseEntity.notFound().build();
         }
 
-        produtoDAO.delete(contato);
+        produtoDAO.delete(produto);
 
         return ResponseEntity.noContent().build();
     }

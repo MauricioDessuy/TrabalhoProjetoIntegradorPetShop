@@ -2,7 +2,6 @@ package com.petshop.main.objetos.resource;
 
 import com.petshop.main.objetos.model.Animal;
 import com.petshop.main.objetos.repository.AnimalDAO;
-import com.petshop.main.objetos.repository.AnimalDAO;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,30 +39,31 @@ public class CadAnimal {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("idPessoa", GenericPropertyMatchers.ignoreCase());
         Example<Animal> example = Example.<Animal>of(animal, matcher);
-        return animalDAO.findAll(example);
+        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
+        return animalDAO.findAll(example, ordenador);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Animal> buscar(@PathVariable Long id) {
-        Animal contato = animalDAO.findOne(id);
+        Animal animal = animalDAO.findOne(id);
 
-        if (contato == null) {
+        if (animal == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(contato);
+        return ResponseEntity.ok(animal);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Animal> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Animal contato) {
+            @Valid @RequestBody Animal animal) {
         Animal existente = animalDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(contato, existente, "id");
+        BeanUtils.copyProperties(animal, existente, "id");
 
         existente = animalDAO.save(existente);
 
@@ -71,13 +72,13 @@ public class CadAnimal {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Animal contato = animalDAO.findOne(id);
+        Animal animal = animalDAO.findOne(id);
 
-        if (contato == null) {
+        if (animal == null) {
             return ResponseEntity.notFound().build();
         }
 
-        animalDAO.delete(contato);
+        animalDAO.delete(animal);
 
         return ResponseEntity.noContent().build();
     }

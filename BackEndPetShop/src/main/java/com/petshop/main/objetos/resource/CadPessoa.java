@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,30 +36,31 @@ public class CadPessoa {
 
     @GetMapping
     public List<Pessoa> listar() {
-        return pessoaDAO.findAll();
+        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
+        return pessoaDAO.findAll(ordenador);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Pessoa> buscar(@PathVariable Long id) {
-        Pessoa contato = pessoaDAO.findOne(id);
+        Pessoa pessoa = pessoaDAO.findOne(id);
 
-        if (contato == null) {
+        if (pessoa == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(contato);
+        return ResponseEntity.ok(pessoa);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Pessoa> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Pessoa contato) {
+            @Valid @RequestBody Pessoa pessoa) {
         Pessoa existente = pessoaDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(contato, existente, "id");
+        BeanUtils.copyProperties(pessoa, existente, "id");
 
         existente = pessoaDAO.save(existente);
 
@@ -67,13 +69,13 @@ public class CadPessoa {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Pessoa contato = pessoaDAO.findOne(id);
+        Pessoa pessoa = pessoaDAO.findOne(id);
 
-        if (contato == null) {
+        if (pessoa == null) {
             return ResponseEntity.notFound().build();
         }
 
-        pessoaDAO.delete(contato);
+        pessoaDAO.delete(pessoa);
 
         return ResponseEntity.noContent().build();
     }
