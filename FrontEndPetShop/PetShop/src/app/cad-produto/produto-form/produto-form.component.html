@@ -1,0 +1,45 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container">
+      <h2>Cadastro de produtos</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+        <div class="form-group">
+          <mat-form-field appearance="legacy">
+            <mat-label for="nome">Nome</mat-label>
+            <input matInput type="text" id="nome" name="nome" class="form-control" placeholder="Nome" [(ngModel)]="produto.nome"
+              required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="legacy">
+            <mat-label for="nome">Marca</mat-label>
+            <input matInput type="text" id="marca" name="marca" class="form-control" placeholder="Marca"
+              [(ngModel)]="produto.marca" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="legacy">
+            <mat-label for="valorUnitario">Valor unitário</mat-label>
+            <input matInput type="text" id="valorUnitario" name="valorUnitario" class="form-control" placeholder="10,00"
+              [(ngModel)]="produto.valorUnitario" required />
+          </mat-form-field>
+        </div>
+
+
+        <button *ngIf="inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Adicionar</button>
+
+        <button *ngIf="!inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Alterar</button>
+
+      </form>
+    </div>
+  </section>
+</main>

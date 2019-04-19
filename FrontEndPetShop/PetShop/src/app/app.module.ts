@@ -30,7 +30,7 @@ import {
 import 'hammerjs';
 import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
 import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
-import { LayoutModule } from '@angular/cdk/layout';
+import { ProdutoFormComponent } from './cad-produto/produto-form/produto-form.component';
 
 const materialModules = [
   MatButtonModule,
@@ -52,7 +52,8 @@ const materialModules = [
     Erro404Component,
     CadAnimalComponent,
     PessoaFormComponent,
-    CadPessoaComponent
+    CadPessoaComponent,
+    ProdutoFormComponent
   ],
   imports: [
     BrowserModule,

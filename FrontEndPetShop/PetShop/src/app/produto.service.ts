@@ -21,4 +21,12 @@ export class ProdutoService {
     return this.http.delete(this.produtosUrl + '/' + id)
   }
 
+  buscar(id : any) {
+    return this.http.get<any>(this.produtosUrl + '/' + id);
+  }
+
+  alterar(produto : any) {
+    return this.http.put<any>(this.produtosUrl + '/' + produto.id, produto);
+  }
+
 }

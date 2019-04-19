@@ -40,4 +40,12 @@ export class CadProdutoComponent implements OnInit {
     });
   }
 
+  redirecionarParaAlteracao(id: any) {
+    this.router.navigate(['cad-produto/' + id]);
+  }
+
+  irParaNovo() {
+    this.router.navigate(['cad-produto/novo']);
+  }
+
 }

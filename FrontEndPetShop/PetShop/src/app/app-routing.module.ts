@@ -7,12 +7,15 @@ import { CadAnimalComponent } from './cad-animal/cad-animal.component';
 import { LoginComponent} from './login/login.component';
 import { Erro404Component} from './erro404/erro404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProdutoFormComponent } from './cad-produto/produto-form/produto-form.component';
 
 const routes: Routes = [
   { path: 'cad-pessoa', component: CadPessoaComponent, canActivate : [ AuthGuard ] }, 
   { path: 'cad-pessoa/novo', component: PessoaFormComponent, canActivate : [ AuthGuard ] },
   { path: 'cad-pessoa/:id', component: PessoaFormComponent, canActivate : [ AuthGuard ] },
   { path: 'cad-produto', component: CadProdutoComponent, canActivate : [ AuthGuard ] },
+  { path: 'cad-produto/novo', component: ProdutoFormComponent, canActivate : [ AuthGuard ] },
+  { path: 'cad-produto/:id', component: ProdutoFormComponent, canActivate : [ AuthGuard ] },
   { path: ':id/cad-animal', component: CadAnimalComponent, canActivate : [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
