@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { PessoaService } from '../../pessoa.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -14,7 +15,10 @@ export class PessoaFormComponent implements OnInit {
   idPessoa: any;
   inclusao: boolean;
 
-  constructor(private pessoaService: PessoaService, private router: Router, private minhaRota: ActivatedRoute) { }
+  constructor(private pessoaService: PessoaService, 
+              private router: Router, 
+              private minhaRota: ActivatedRoute,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.minhaRota.params.subscribe(res => this.idPessoa = res.id);
@@ -32,11 +36,13 @@ export class PessoaFormComponent implements OnInit {
       this.pessoaService.adicionar(this.pessoa).subscribe(resposta => {
         this.router.navigate(['cad-pessoa']);
         frm.reset();
+        this.openSnackBar("Registro incluído!", "OK");
       });
     } else {
       this.pessoaService.alterar(this.pessoa).subscribe(resposta => {
         this.router.navigate(['cad-pessoa']);
         frm.reset();
+        this.openSnackBar("Cadastro atualizado!", "OK");
       });
     }
   }
@@ -50,6 +56,16 @@ export class PessoaFormComponent implements OnInit {
       }
       this.pessoa = resposta;
     });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  retornar() {
+    this.router.navigate(['cad-pessoa']);
   }
 
 }

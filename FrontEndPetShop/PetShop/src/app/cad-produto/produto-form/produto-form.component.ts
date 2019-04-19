@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProdutoService } from '../../produto.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class ProdutoFormComponent implements OnInit {
   idProduto : any;
   inclusao : boolean;
 
-  constructor(private produtoService: ProdutoService, private router: Router, private minhaRota: ActivatedRoute) { }
+  constructor(private produtoService: ProdutoService,
+              private router: Router, 
+              private minhaRota: ActivatedRoute,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.minhaRota.params.subscribe(res => this.idProduto = res.id);
@@ -28,15 +32,18 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   adicionar(frm: FormGroup) {
+    this.produto.valorUnitario = this.produto.valorUnitario.replace(",", ".");
     if (this.inclusao) {
       this.produtoService.adicionar(this.produto).subscribe(resposta => {
         this.router.navigate(['cad-produto']);
         frm.reset();
+        this.openSnackBar("Registro incluído!", "Ok");
       });
     } else {
       this.produtoService.alterar(this.produto).subscribe(resposta => {
         this.router.navigate(['cad-produto']);
         frm.reset();
+        this.openSnackBar("Cadastro atualizado!", "Ok");
       });
     }
   }
@@ -47,5 +54,14 @@ export class ProdutoFormComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  retornar() {
+    this.router.navigate(['cad-produto']);
+  }
 
 }

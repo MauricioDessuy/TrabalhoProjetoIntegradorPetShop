@@ -7,6 +7,13 @@
 
   <section>
     <div class="container">
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary" (click)="retornar()">Retornar</button>
+    </div>
+    <br>
+  </section>
+
+  <section>
+    <div class="container">
       <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
 
         <div class="form-group container60">
@@ -68,7 +75,7 @@
           <mat-form-field appearance="legacy">
             <mat-label for="senha">Senha</mat-label>
             <input matInput type="password" id="senha" name="senha" class="form-control" placeholder="Senha"
-              [(ngModel)]="pessoa.senha" />
+              [(ngModel)]="pessoa.senha" required/>
           </mat-form-field>
         </div>
 

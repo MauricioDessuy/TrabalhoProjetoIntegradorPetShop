@@ -25,12 +25,18 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatSelectModule,
-  MatOptionModule, MatGridListModule, MatCardModule, MatMenuModule
+  MatOptionModule, 
+  MatGridListModule, 
+  MatCardModule, 
+  MatMenuModule,
+  MatSnackBarModule
 } from '@angular/material';
 import 'hammerjs';
 import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
 import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
 import { ProdutoFormComponent } from './cad-produto/produto-form/produto-form.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { ModVendasComponent } from './mod-vendas/mod-vendas.component';
 
 const materialModules = [
   MatButtonModule,
@@ -41,7 +47,8 @@ const materialModules = [
   MatDatepickerModule,
   MatIconModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
@@ -53,7 +60,8 @@ const materialModules = [
     CadAnimalComponent,
     PessoaFormComponent,
     CadPessoaComponent,
-    ProdutoFormComponent
+    ProdutoFormComponent,
+    ModVendasComponent
   ],
   imports: [
     BrowserModule,
