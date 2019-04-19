@@ -25,11 +25,12 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule, MatGridListModule, MatCardModule, MatMenuModule
 } from '@angular/material';
 import 'hammerjs';
 import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
 import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const materialModules = [
   MatButtonModule,
@@ -60,7 +61,13 @@ const materialModules = [
     NgxMaskModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    materialModules
+    materialModules,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule
   ],
   exports: [
     materialModules
