@@ -35,8 +35,9 @@
         <div class="form-group">
           <mat-form-field appearance="legacy">
             <mat-label for="valorUnitario">Valor unitário</mat-label>
-            <input matInput type="text" id="valorUnitario" name="valorUnitario" class="form-control" placeholder="0000,00"
-              maxlength="7" mask='0000,00' [clearIfNotMatch]="true" [(ngModel)]="produto.valorUnitario" required />
+            <input matInput type="text" id="valorUnitario" name="valorUnitario" class="form-control"
+              placeholder="R$ 00,00" type="number" min="0.00" max="10000.00" step="1" [(ngModel)]="produto.valorUnitario"
+              required />
           </mat-form-field>
         </div>
 

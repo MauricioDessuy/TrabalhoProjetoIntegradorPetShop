@@ -1,6 +1,6 @@
 package com.petshop.main.objetos.model;
 
-import com.petshop.main.utilitarios.SexoPessoa;
+import com.petshop.main.enumeracoes.SexoPessoa;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;

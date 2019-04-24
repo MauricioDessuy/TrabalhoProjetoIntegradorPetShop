@@ -1,0 +1,147 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container centralizar">
+      <h2>Vendas</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <button type="submit" mat-raised-button color="primary" class="btn btn-primary"
+        (click)="retornar()">Retornar</button>
+    </div>
+    <br>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+
+        <div class="row">
+          <div class="col-md-2">
+            <mat-form-field appearance="legacy">
+              <mat-label for="codPessoa">Código</mat-label>
+              <input matInput id="codPessoa" name="codPessoa" [(ngModel)]="venda.idPessoa"
+                (focusout)="carregarCampoPessoa(venda.idPessoa)" />
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-8 container100">
+            <mat-form-field appearance="legacy">
+              <mat-label for="nome">Nome</mat-label>
+              <input matInput id="nome" name="nome" [(ngModel)]="venda.nomePessoa" disabled />
+            </mat-form-field>
+          </div>
+
+          <div>
+            <a class="espacoCima" mat-icon-button (click)="abrirTabelaPessoa()">
+              <mat-icon>description</mat-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field>
+            <mat-label>Forma de Pagamento</mat-label>
+            <mat-select matInput id="formaPagamento" name="formaPagamento" [(ngModel)]="venda.formaPagamento">
+              <mat-option value="0" [value]="0">Dinheiro</mat-option>
+              <mat-option value="1" [value]="1">Cartão</mat-option>
+              <mat-option value="2" [value]="2">A Prazo</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-card>
+          <mat-card-title>Produtos</mat-card-title>
+          <mat-card-subtitle>Adicione os produtos da venda</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-2">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="codProduto">Código</mat-label>
+                  <input matInput id="codProduto" name="codProduto" [(ngModel)]="idProduto"
+                    (focusout)="carregarCampoProduto(idProduto)" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-8 container100">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="nomeProduto">Nome</mat-label>
+                  <input matInput id="nomeProduto" name="nomeProduto" [(ngModel)]="nomeProduto" disabled />
+                </mat-form-field>
+              </div>
+
+              <div>
+                <a class="espacoCima" mat-icon-button (click)="abrirTabelaProduto()">
+                  <mat-icon>description</mat-icon>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="quantidade">Quantidade</mat-label>
+                  <input matInput id="quantidade" name="quantidade" [(ngModel)]="quantidade" type="number"
+                    min="0.00" max="10000.00" step="1" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="desconto">Desconto</mat-label>
+                  <input matInput id="desconto" name="desconto" [(ngModel)]="vlrDesconto" type="number"
+                    min="0.00" max="10000.00" step="0.10" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="vlrUnitario">Valor Unitário</mat-label>
+                  <input matInput id="vlrUnitario" name="vlrUnitario" [(ngModel)]="vlrUnitario" type="number"
+                    min="0.00" max="10000.00" step="0.10" />
+                </mat-form-field>
+              </div>
+              <div>
+                <a class= "espacoIcone" mat-icon-button (click)="adicionarProduto()">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                </a>
+              </div>
+            </div>
+            <section class="mt-5">
+              <div class="container">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                    <thead class="thead-light text-center">
+                      <tr>
+                        <th>Item</th>
+                        <th class="w-50">Produto</th>
+                        <th class="w-25">Quantidade</th>
+                        <th class="w-25">Valor Unitário</th>
+                        <th class="w-25">Valor Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let itemVenda of venda.listaItens">
+                        <td class="text-center w-25">{{itemVenda.numeroItem}}</td>
+                        <td>{{itemVenda.produto.nome}}</td>
+                        <td>{{itemVenda.quantidade}}</td>
+                        <td>{{itemVenda.valorUnitario | currency}}</td>
+                        <td>{{itemVenda.valorUnitario * itemVenda.quantidade | currency}}</td>
+                        <td>
+                          <a mat-icon-button color="warn" (click)="removerItem(itemVenda)">
+                            <mat-icon>delete</mat-icon>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <br>
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Finalizar</button>
+      </form>
+    </div>
+  </section>
+</main>

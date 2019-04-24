@@ -1,16 +1,12 @@
 package com.petshop.main.objetos.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -33,7 +29,7 @@ public class Produto implements Serializable {
     
     @NotNull
     @Column(name = "valor_unitario")
-    private float valorUnitario;
+    private Float valorUnitario;
 
     public String getMarca() {
         return marca;
@@ -50,7 +46,6 @@ public class Produto implements Serializable {
     public void setValorUnitario(float valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
-    
     
     public Long getId() {
         return id;

@@ -27,14 +27,14 @@ export class CadAnimalComponent implements OnInit {
   }
 
   listar() {
-    this.animalFiltro.idPessoa = this.idPessoa;
+    this.animalFiltro.pessoa = { id : this.idPessoa };
     this.animalService.listar(this.animalFiltro)
       .subscribe(dados => this.animals = dados);
   }
 
   adicionar(frm : FormGroup) {
     this.animal.dataNascimento = new Date(this.animal.dataNascimento + ' 03:00:00 GMT');
-    this.animal.idPessoa = this.idPessoa;
+    this.animal.pessoa = { id : this.idPessoa };
     this.animalService.adicionar(this.animal).subscribe(resposta => {
       this.animals.push(resposta);
       frm.reset();

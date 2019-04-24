@@ -37,7 +37,7 @@
 
               <td>{{produto.marca}}</td>
 
-              <td>{{produto.valorUnitario}}</td>
+              <td>{{produto.valorUnitario | currency}}</td>
 
               <td>
                 <button mat-icon-button (click)="redirecionarParaAlteracao(produto.id)">

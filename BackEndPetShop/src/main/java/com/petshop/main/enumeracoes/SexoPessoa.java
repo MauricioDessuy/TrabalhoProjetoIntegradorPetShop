@@ -1,4 +1,4 @@
-package com.petshop.main.utilitarios;
+package com.petshop.main.enumeracoes;
 
 /**
  *

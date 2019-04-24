@@ -42,19 +42,17 @@ public class Animal implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataObito;
  
-    
-    @Column(name = "id_pessoa")
-    private int idPessoa;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
+    private Pessoa pessoa;
 
-    public int getIdPessoa() {
-        return idPessoa;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
-    
-
    
     public Long getId() {
         return id;

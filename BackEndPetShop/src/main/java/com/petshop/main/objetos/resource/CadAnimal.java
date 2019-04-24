@@ -37,7 +37,7 @@ public class CadAnimal {
     @PostMapping("/pessoa/{id}")
     public List<Animal> listar(@RequestBody Animal animal) {
         ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("idPessoa", GenericPropertyMatchers.ignoreCase());
+                .withMatcher("pessoa", GenericPropertyMatchers.ignoreCase());
         Example<Animal> example = Example.<Animal>of(animal, matcher);
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
         return animalDAO.findAll(example, ordenador);

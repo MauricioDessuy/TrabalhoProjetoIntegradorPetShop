@@ -18,6 +18,10 @@
     width: 20%;
 }
 
+.container90 > * {
+    width: 90%;
+}
+
 .centralizar > * {
     text-align: center
 }
@@ -25,3 +29,4 @@
 .centralizarVertical > * {
     margin-top: 15%;
 }
+

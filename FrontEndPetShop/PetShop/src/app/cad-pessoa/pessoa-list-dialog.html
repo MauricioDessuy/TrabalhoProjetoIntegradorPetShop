@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Selecione um cliente</h1>
+<div mat-dialog-content>
+  <section class="mt-5">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>Código</th>
+
+              <th class="w-50">Nome</th>
+
+              <th class="w-25">CPF</th>
+
+              <th class="w-25">Sexo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let pessoa of pessoas">
+              <td>
+                <mat-radio-group [(ngModel)]="idPessoaSelecionada">
+                  <mat-radio-button [value]="pessoa.id">{{pessoa.id}}</mat-radio-button>
+                </mat-radio-group>
+              </td>
+
+              <td>{{pessoa.nome}}</td>
+
+              <td>{{pessoa.cpf | mask: '000.000.000-00'}}</td>
+
+              <td>{{pessoa.sexo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button mat-button [mat-dialog-close]="idPessoaSelecionada">Ok</button>
+</div>

@@ -29,7 +29,9 @@ import {
   MatGridListModule, 
   MatCardModule, 
   MatMenuModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDialogModule,
+  MatRadioModule
 } from '@angular/material';
 import 'hammerjs';
 import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
@@ -37,6 +39,9 @@ import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
 import { ProdutoFormComponent } from './cad-produto/produto-form/produto-form.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ModVendasComponent } from './mod-vendas/mod-vendas.component';
+import { PessoaListDialog } from './cad-pessoa/pessoa-list-dialog';
+import { SnackBarUtil } from './snack-bar-util';
+import { ProdutoListDialog } from './cad-produto/produto-list-dialog';
 
 const materialModules = [
   MatButtonModule,
@@ -48,7 +53,9 @@ const materialModules = [
   MatIconModule,
   MatSelectModule,
   MatOptionModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDialogModule,
+  MatRadioModule,
 ];
 
 @NgModule({
@@ -61,7 +68,9 @@ const materialModules = [
     PessoaFormComponent,
     CadPessoaComponent,
     ProdutoFormComponent,
-    ModVendasComponent
+    ModVendasComponent,
+    PessoaListDialog,
+    ProdutoListDialog
   ],
   imports: [
     BrowserModule,
@@ -81,7 +90,8 @@ const materialModules = [
   exports: [
     materialModules
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService ],
-  bootstrap: [AppComponent]
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, SnackBarUtil ],
+  bootstrap: [AppComponent],
+  entryComponents: [PessoaListDialog, ProdutoListDialog],
 })
 export class AppModule { }
