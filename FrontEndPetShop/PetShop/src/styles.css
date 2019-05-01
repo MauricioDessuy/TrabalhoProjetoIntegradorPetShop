@@ -5,6 +5,15 @@
 .container100 > * {
     width: 100%;
 }
+.container10 > * {
+    width: 10%;
+}
+.container30 > * {
+    width: 30%;
+}
+.container70 > * {
+    width: 70%;
+}
 
 .container60 > * {
     width: 60%;
@@ -12,6 +21,14 @@
 
 .container40 > * {
     width: 40%;
+}
+
+.container80 > * {
+    width: 80%;
+}
+
+.container50 > * {
+    width: 50%;
 }
 
 .container20 > * {

@@ -10,8 +10,11 @@ export class SnackBarUtil {
     constructor(private snackBar: MatSnackBar) { }
 
     openSnackBar(message: string, action: string) {
-        this.snackBar.open(message, action, {
-            duration: 2000,
+        this.snackBar.open(message, action,  {
+            if (condition) {
+                
+            }
+            //duration: 7000,
         });
     }
 }
