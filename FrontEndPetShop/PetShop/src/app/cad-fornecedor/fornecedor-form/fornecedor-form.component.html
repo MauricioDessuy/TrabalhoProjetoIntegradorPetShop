@@ -1,0 +1,58 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container centralizar">
+      <h2>Cadastro de fornecedor</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary" (click)="retornar()">Retornar</button>
+    </div>
+    <br>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+
+        <div class="form-group container60">
+          <mat-form-field appearance="legacy">
+            <mat-label for="nome">Nome</mat-label>
+            <input matInput id="nome" name="nome" placeholder="Nome" [(ngModel)]="fornecedor.nome" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field appearance="legacy">
+            <mat-label for="cnpj">CNPJ</mat-label>
+            <input matInput type="text" id="cnpj" name="cnpj" class="form-control" placeholder="00.000.000/0000-00"
+              maxlength="18" mask='00.000.000/0000-00' [clearIfNotMatch]="true" [(ngModel)]="fornecedor.cnpj" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container20">
+          <mat-form-field appearance="legacy">
+            <mat-label for="telefone">Telefone</mat-label>
+            <input matInput type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" maxlength="16"
+              mask='(00) 00000-0000' [clearIfNotMatch]='true' [(ngModel)]="fornecedor.telefone" required />
+          </mat-form-field>
+        </div>
+
+        <div class="form-group container60">
+          <mat-form-field appearance="legacy">
+            <mat-label for="email">E-mail</mat-label>
+            <input matInput type="email" id="email" name="email" placeholder="E-mail" [(ngModel)]="fornecedor.email"
+              required email />
+          </mat-form-field>
+        </div>
+
+        <button *ngIf="inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Adicionar</button>
+
+        <button *ngIf="!inclusao" type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Alterar</button>
+      </form>
+    </div>
+  </section>
+</main>

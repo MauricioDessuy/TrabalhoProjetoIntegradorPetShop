@@ -16,6 +16,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { CadAnimalComponent } from './cad-animal/cad-animal.component';
 import { AnimalService } from './animal.service';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CadFornecedorComponent } from './cad-fornecedor/cad-fornecedor.component';
+import { FornecedorService } from './fornecedor.service';
 import { 
   MatButtonModule, 
   MatCheckboxModule, 
@@ -42,6 +44,7 @@ import { ModVendasComponent } from './mod-vendas/mod-vendas.component';
 import { PessoaListDialog } from './cad-pessoa/pessoa-list-dialog';
 import { SnackBarUtil } from './snack-bar-util';
 import { ProdutoListDialog } from './cad-produto/produto-list-dialog';
+import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
 
 const materialModules = [
   MatButtonModule,
@@ -70,7 +73,9 @@ const materialModules = [
     ProdutoFormComponent,
     ModVendasComponent,
     PessoaListDialog,
-    ProdutoListDialog
+    ProdutoListDialog,
+    CadFornecedorComponent,
+    FornecedorFormComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,7 @@ const materialModules = [
   exports: [
     materialModules
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, SnackBarUtil ],
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, FornecedorService, SnackBarUtil ],
   bootstrap: [AppComponent],
   entryComponents: [PessoaListDialog, ProdutoListDialog],
 })
