@@ -37,12 +37,20 @@ export class PessoaFormComponent implements OnInit {
         this.router.navigate(['cad-pessoa']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Registro incluído!", "OK");
+      }, erro => {
+        this.router.navigate(['cad-pessoa']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao incluir!", "OK");
       });
     } else {
       this.pessoaService.alterar(this.pessoa).subscribe(resposta => {
         this.router.navigate(['cad-pessoa']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Cadastro atualizado!", "OK");
+      }, erro => {
+        this.router.navigate(['cad-pessoa']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao atualizar!", "OK");
       });
     }
   }

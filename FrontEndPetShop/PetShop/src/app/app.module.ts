@@ -18,6 +18,7 @@ import { AnimalService } from './animal.service';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CadFornecedorComponent } from './cad-fornecedor/cad-fornecedor.component';
 import { FornecedorService } from './fornecedor.service';
+import { VendaService } from './venda.service';
 import { 
   MatButtonModule, 
   MatCheckboxModule, 
@@ -45,6 +46,7 @@ import { PessoaListDialog } from './cad-pessoa/pessoa-list-dialog';
 import { SnackBarUtil } from './snack-bar-util';
 import { ProdutoListDialog } from './cad-produto/produto-list-dialog';
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
+import { from } from 'rxjs';
 
 const materialModules = [
   MatButtonModule,
@@ -95,7 +97,7 @@ const materialModules = [
   exports: [
     materialModules
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, FornecedorService, SnackBarUtil ],
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, FornecedorService, SnackBarUtil, VendaService ],
   bootstrap: [AppComponent],
   entryComponents: [PessoaListDialog, ProdutoListDialog],
 })

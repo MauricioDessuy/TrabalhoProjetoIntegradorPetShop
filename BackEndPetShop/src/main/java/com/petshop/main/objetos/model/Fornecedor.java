@@ -1,25 +1,18 @@
 package com.petshop.main.objetos.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "animals")
-public class Animal implements Serializable {
+@Table(name = "fornecedores")
+public class Fornecedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,29 +23,15 @@ public class Animal implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @NotBlank
-    @Column(name = "raca")
-    private String raca;
+    @Column(name = "cnpj")
+    private String cnpj;
 
-    @Column(name = "data_nascimento")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataNascimento;
+    @Column(name = "telefone")
+    private String telefone;
 
-    @Column(name = "data_obito")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataObito;
- 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
-    private Pessoa pessoa;
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+    @Email
+    @Column(name = "email")
+    private String email;
    
     public Long getId() {
         return id;
@@ -70,28 +49,28 @@ public class Animal implements Serializable {
         this.nome = nome;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public Date getDataObito() {
-        return dataObito;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDataObito(Date dataObito) {
-        this.dataObito = dataObito;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -113,7 +92,7 @@ public class Animal implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Animal other = (Animal) obj;
+        Fornecedor other = (Fornecedor) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

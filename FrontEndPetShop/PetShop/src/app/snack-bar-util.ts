@@ -11,10 +11,13 @@ export class SnackBarUtil {
 
     openSnackBar(message: string, action: string) {
         this.snackBar.open(message, action,  {
-            if (condition) {
-                
-            }
-            //duration: 7000,
+            duration: 2000,
+        });
+    }
+
+    openSnackBarMsgErro(message: string, action: string) {
+        this.snackBar.open(message, action,  {
+
         });
     }
 }

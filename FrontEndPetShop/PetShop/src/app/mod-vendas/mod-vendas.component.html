@@ -16,9 +16,6 @@
   <section>
     <div class="container">
       <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
-
-
-
         <mat-card>
           <mat-card-title>Produtos</mat-card-title>
           <mat-card-subtitle>Adicione os produtos da venda</mat-card-subtitle>
@@ -64,9 +61,6 @@
                 </a>
               </div>
             </div>
-
-
-
             <section class="mt-5">
               <div class="container">
                 <div class="table-responsive">
@@ -92,6 +86,13 @@
                             <mat-icon>delete</mat-icon>
                           </a>
                         </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>{{venda.valorTotal | currency}}</b></td>
                       </tr>
                     </tbody>
                   </table>

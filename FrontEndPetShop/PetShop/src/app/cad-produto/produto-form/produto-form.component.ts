@@ -38,12 +38,20 @@ export class ProdutoFormComponent implements OnInit {
         this.router.navigate(['cad-produto']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Registro incluído!", "Ok");
+      }, erro => {
+        this.router.navigate(['cad-produto']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao incluir!", "Ok");
       });
     } else {
       this.produtoService.alterar(this.produto).subscribe(resposta => {
         this.router.navigate(['cad-produto']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Cadastro atualizado!", "Ok");
+      }, erro => {
+        this.router.navigate(['cad-produto']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao atualizar!", "Ok");
       });
     }
   }

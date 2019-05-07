@@ -37,12 +37,20 @@ export class FornecedorFormComponent implements OnInit {
         this.router.navigate(['cad-fornecedor']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Registro incluído!", "OK");
+      }, erro => {
+        this.router.navigate(['cad-fornecedor']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao incluir!", "Ok");
       });
     } else {
       this.fornecedorService.alterar(this.fornecedor).subscribe(resposta => {
         this.router.navigate(['cad-fornecedor']);
         frm.reset();
         this.snackBarUtil.openSnackBar("Cadastro atualizado!", "OK");
+      }, erro => {
+        this.router.navigate(['cad-fornecedor']);
+        frm.reset();
+        this.snackBarUtil.openSnackBarMsgErro("Erro ao atualizar!", "Ok");
       });
     }
   }

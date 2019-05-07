@@ -1,7 +1,7 @@
 package com.petshop.main.objetos.resource;
 
-import com.petshop.main.objetos.model.Pessoa;
-import com.petshop.main.objetos.repository.PessoaDAO;
+import com.petshop.main.objetos.model.Animal;
+import com.petshop.main.objetos.repository.AnimalDAO;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,70 +23,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pessoas")
-public class CadPessoa {
+@RequestMapping("/animais")
+public class ResAnimal {
 
     @Autowired
-    private PessoaDAO pessoaDAO;
+    private AnimalDAO animalDAO;
 
     @PostMapping
-    public Pessoa adicionar(@Valid @RequestBody Pessoa pessoa) {
-        return pessoaDAO.save(pessoa);
+    public Animal adicionar(@Valid @RequestBody Animal animal) {
+        return animalDAO.save(animal);
     }
 
-    @GetMapping
-    public List<Pessoa> listar() {
+    @PostMapping("/pessoa/{id}")
+    public List<Animal> listar(@RequestBody Animal animal) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("pessoa", GenericPropertyMatchers.ignoreCase());
+        Example<Animal> example = Example.<Animal>of(animal, matcher);
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return pessoaDAO.findAll(ordenador);
+        return animalDAO.findAll(example, ordenador);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pessoa> buscar(@PathVariable Long id) {
-        Pessoa pessoa = pessoaDAO.findOne(id);
+    public ResponseEntity<Animal> buscar(@PathVariable Long id) {
+        Animal animal = animalDAO.findOne(id);
 
-        if (pessoa == null) {
+        if (animal == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(pessoa);
+        return ResponseEntity.ok(animal);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pessoa> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Pessoa pessoa) {
-        Pessoa existente = pessoaDAO.findOne(id);
+    public ResponseEntity<Animal> atualizar(@PathVariable Long id,
+            @Valid @RequestBody Animal animal) {
+        Animal existente = animalDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(pessoa, existente, "id");
+        BeanUtils.copyProperties(animal, existente, "id");
 
-        existente = pessoaDAO.save(existente);
+        existente = animalDAO.save(existente);
 
         return ResponseEntity.ok(existente);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Pessoa pessoa = pessoaDAO.findOne(id);
+        Animal animal = animalDAO.findOne(id);
 
-        if (pessoa == null) {
+        if (animal == null) {
             return ResponseEntity.notFound().build();
         }
 
-        pessoaDAO.delete(pessoa);
+        animalDAO.delete(animal);
 
         return ResponseEntity.noContent().build();
-    }
-
-   // @RequestMapping("/pessoas/logar")
-    @PostMapping("/logar")
-    public boolean logar(@RequestBody Pessoa pessoa) {
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("usuario", GenericPropertyMatchers.ignoreCase()).withMatcher("senha", GenericPropertyMatchers.ignoreCase());
-        Example<Pessoa> example = Example.<Pessoa>of(pessoa, matcher);
-        boolean exists = pessoaDAO.exists(example);
-        return exists;
     }
 }

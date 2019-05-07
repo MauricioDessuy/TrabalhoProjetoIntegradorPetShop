@@ -1,13 +1,16 @@
 package com.petshop.main.objetos.resource;
 
-import com.petshop.main.objetos.model.Produto;
-import com.petshop.main.objetos.repository.ProdutoDAO;
+import com.petshop.main.objetos.model.Fornecedor;
+import com.petshop.main.objetos.repository.FornecedorDAO;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,62 +22,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
-@RequestMapping("/produtos")
-public class CadProduto {
+@RequestMapping("/fornecedores")
+public class ResFornecedor {
 
     @Autowired
-    private ProdutoDAO produtoDAO;
+    private FornecedorDAO fornecedorDAO;
 
     @PostMapping
-    public Produto adicionar(@Valid @RequestBody Produto produto) {
-        return produtoDAO.save(produto);
+    public Fornecedor adicionar(@Valid @RequestBody Fornecedor fornecedor) {
+        return fornecedorDAO.save(fornecedor);
     }
 
     @GetMapping
-    public List<Produto> listar() {
+    public List<Fornecedor> listar() {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return produtoDAO.findAll(ordenador);
+        return fornecedorDAO.findAll(ordenador);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscar(@PathVariable Long id) {
-        Produto produto = produtoDAO.findOne(id);
+    public ResponseEntity<Fornecedor> buscar(@PathVariable Long id) {
+        Fornecedor fornecedor = fornecedorDAO.findOne(id);
 
-        if (produto == null) {
+        if (fornecedor == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(produto);
+        return ResponseEntity.ok(fornecedor);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Produto produto) {
-        Produto existente = produtoDAO.findOne(id);
+    public ResponseEntity<Fornecedor> atualizar(@PathVariable Long id,
+            @Valid @RequestBody Fornecedor fornecedor) {
+        Fornecedor existente = fornecedorDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(produto, existente, "id");
+        BeanUtils.copyProperties(fornecedor, existente, "id");
 
-        existente = produtoDAO.save(existente);
+        existente = fornecedorDAO.save(existente);
 
         return ResponseEntity.ok(existente);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Produto produto = produtoDAO.findOne(id);
+        Fornecedor fornecedor = fornecedorDAO.findOne(id);
 
-        if (produto == null) {
+        if (fornecedor == null) {
             return ResponseEntity.notFound().build();
         }
 
-        produtoDAO.delete(produto);
+        fornecedorDAO.delete(fornecedor);
 
         return ResponseEntity.noContent().build();
     }

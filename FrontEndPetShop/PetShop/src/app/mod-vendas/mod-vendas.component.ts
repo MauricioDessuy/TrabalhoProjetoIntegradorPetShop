@@ -16,42 +16,60 @@ import { ProdutoListDialog } from '../cad-produto/produto-list-dialog';
 })
 export class ModVendasComponent implements OnInit {
 
-  venda : any;
+  venda: any;
 
-  idPessoa : any;
-  nomePessoa : any;
-  pessoa : any;
+  idPessoa: any;
+  nomePessoa: any;
+  pessoa: any;
 
-  numeroItem : any;
-  idProduto : any;
-  nomeProduto : any;
-  produto : any;
-  quantidade : any;
-  vlrDesconto : any;
-  vlrUnitario : any;
-  vendaItem : any;
+  clientePadrao : any;
+
+  numeroItem: any;
+  idProduto: any;
+  nomeProduto: any;
+  produto: any;
+  quantidade: any;
+  vlrDesconto: any;
+  vlrUnitario: any;
+  vendaItem: any;
 
   constructor(private vendaService: VendaService,
     private router: Router,
     private snackBarUtil: SnackBarUtil,
     public dialog: MatDialog,
-    private pessoaService : PessoaService,
-    private produtoService : ProdutoService) { }
+    private pessoaService: PessoaService,
+    private produtoService: ProdutoService) { }
 
   ngOnInit() {
     this.venda = {};
+    this.venda.valorTotal = 0;
     this.venda.listaItens = new Array();
     this.vlrDesconto = 0.00;
     this.quantidade = 1;
     this.numeroItem = 0;
+    this.carregarClientePadrao();
   }
 
   adicionar(frm: FormGroup) {
     this.venda.dataVenda = new Date();
+    this.venda.valorTotal = 0;
+    if (this.venda.pessoa == null) {
+      this.venda.pessoa = this.clientePadrao;
+    }
     this.vendaService.adicionar(this.venda).subscribe(resposta => {
       this.router.navigate(['mod-vendas']);
       frm.reset();
+      this.venda = {};
+      this.venda.valorTotal = 0;
+      this.venda.listaItens = new Array();
       this.snackBarUtil.openSnackBar("Venda Realizada!", "OK");
+    }, erro => {
+      this.router.navigate(['mod-vendas']);
+      frm.reset();
+      this.venda = {};
+      this.venda.valorTotal = 0;
+      this.venda.listaItens = new Array();
+      this.snackBarUtil.openSnackBarMsgErro("Erro ao realizar a venda!", "OK");
     });
   }
 
@@ -62,7 +80,7 @@ export class ModVendasComponent implements OnInit {
   abrirTabelaPessoa() {
     const dialogRef = this.dialog.open(PessoaListDialog, {
       width: '850px',
-      data: {  }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -70,14 +88,14 @@ export class ModVendasComponent implements OnInit {
     });
   }
 
-  private carregarCampoPessoa(idPes : any) {
+  private carregarCampoPessoa(idPes: any) {
     if (idPes != null && !isNaN(parseFloat(idPes)) && isFinite(idPes)) {
       this.pessoaService.buscar(idPes).subscribe(resultadoPessoa => {
         this.venda.pessoa = resultadoPessoa;
         this.venda.idPessoa = resultadoPessoa.id;
         this.venda.nomePessoa = resultadoPessoa.nome;
       }, erro => {
-        this.snackBarUtil.openSnackBar("Pessoa não encontrada no banco de dados!", "Ok");
+        this.snackBarUtil.openSnackBarMsgErro("Pessoa não encontrada no banco de dados!", "Ok");
         this.venda.idPessoa = null;
         this.venda.nomePessoa = null;
         this.venda.pessoa = null;
@@ -89,10 +107,19 @@ export class ModVendasComponent implements OnInit {
     }
   }
 
+  private carregarClientePadrao() {
+    this.pessoaService.buscar(0).subscribe(resultadoPessoa => {
+      this.clientePadrao = resultadoPessoa;
+    }, erro => {
+      this.snackBarUtil.openSnackBarMsgErro("Erro ao carregar o cliente padrão!", "Ok");
+      this.clientePadrao = null;
+    });
+  }
+
   abrirTabelaProduto() {
     const dialogRef = this.dialog.open(ProdutoListDialog, {
       width: '850px',
-      data: {  }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -100,7 +127,7 @@ export class ModVendasComponent implements OnInit {
     });
   }
 
-  private carregarCampoProduto(idProd : any) {
+  private carregarCampoProduto(idProd: any) {
     if (idProd != null && !isNaN(parseFloat(idProd)) && isFinite(idProd)) {
       this.produtoService.buscar(idProd).subscribe(resultadoProduto => {
         this.produto = resultadoProduto;
@@ -108,7 +135,7 @@ export class ModVendasComponent implements OnInit {
         this.nomeProduto = resultadoProduto.nome;
         this.vlrUnitario = resultadoProduto.valorUnitario;
       }, erro => {
-        this.snackBarUtil.openSnackBar("Produto não encontrada no banco de dados!", "Ok");
+        this.snackBarUtil.openSnackBarMsgErro("Produto não encontrada no banco de dados!", "Ok");
         this.idProduto = null;
         this.nomeProduto = null;
         this.produto = null;
@@ -135,13 +162,17 @@ export class ModVendasComponent implements OnInit {
     }
     this.numeroItem++;
     this.vendaItem = {
-      numeroItem : this.numeroItem,
-      produto : { id : this.idProduto, nome : this.nomeProduto},
-      quantidade : this.quantidade,
-      valorUnitario : this.vlrUnitario,
-      valorDesconto : this.vlrDesconto
+      numeroItem: this.numeroItem,
+      produto: { id: this.idProduto, nome: this.nomeProduto },
+      quantidade: this.quantidade,
+      valorUnitario: this.vlrUnitario,
+      valorDesconto: this.vlrDesconto
     };
     this.venda.listaItens.push(this.vendaItem);
+    this.venda.valorTotal = 0;
+    this.venda.listaItens.forEach(item => {
+      this.venda.valorTotal += item.valorUnitario * item.quantidade;
+    });
     this.vendaItem = null;
     this.idProduto = null;
     this.nomeProduto = null;
@@ -151,13 +182,14 @@ export class ModVendasComponent implements OnInit {
     this.vlrUnitario = null;
   }
 
-  removerItem(itemVenda : any) {
-    console.log("entrou metodo");
+  removerItem(itemVenda: any) {
     var index = this.venda.listaItens.indexOf(itemVenda);
-    console.log(index);
     this.venda.listaItens.slice(index, 1);
     this.venda.listaItens = this.venda.listaItens.filter(item => item !== itemVenda);
-    console.log(this.venda.listaItens);
+    this.venda.valorTotal = 0;
+    this.venda.listaItens.forEach(item => {
+      this.venda.valorTotal += item.valorUnitario * item.quantidade;
+    });
   }
 
 }

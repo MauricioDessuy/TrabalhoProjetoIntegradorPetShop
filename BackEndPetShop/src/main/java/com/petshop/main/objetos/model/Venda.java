@@ -2,8 +2,8 @@ package com.petshop.main.objetos.model;
 
 import com.petshop.main.enumeracoes.FormaPagamento;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -25,9 +27,9 @@ public class Venda implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @Column(name = "id_pessoa")
-    private Integer idPessoa;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
+    private Pessoa pessoa;
     
     @NotNull
     @Column(name = "data_venda")
@@ -44,7 +46,7 @@ public class Venda implements Serializable {
     private Float valorTotal;
 
     @Transient
-    private ArrayList<VendaItem> listaItens;
+    private List<VendaItem> listaItens;
     
     public Long getId() {
         return id;
@@ -54,12 +56,12 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdPessoa() {
-        return idPessoa;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public Date getDataVenda() {
@@ -86,11 +88,11 @@ public class Venda implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    public ArrayList<VendaItem> getListaItens() {
+    public List<VendaItem> getListaItens() {
         return listaItens;
     }
 
-    public void setListaItens(ArrayList<VendaItem> listaItens) {
+    public void setListaItens(List<VendaItem> listaItens) {
         this.listaItens = listaItens;
     }
     

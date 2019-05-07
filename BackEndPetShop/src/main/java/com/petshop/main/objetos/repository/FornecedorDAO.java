@@ -1,8 +1,8 @@
 package com.petshop.main.objetos.repository;
 
-import com.petshop.main.objetos.model.Animal;
+import com.petshop.main.objetos.model.Fornecedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AnimalDAO extends JpaRepository<Animal, Long> {
+public interface FornecedorDAO extends JpaRepository<Fornecedor, Long> {
 
 }
