@@ -139,10 +139,13 @@ left join pessoas pes on pes.id = v.id_pessoa]]>
 			<textField>
 				<reportElement x="312" y="2" width="57" height="16" uuid="83d84542-633e-4143-846c-af41ad706ba7"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{quantidade} + " Unidade" + ($F{quantidade} > 1 ? "s" : "")]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
 				<reportElement x="373" y="2" width="87" height="16" uuid="43145601-2394-4165-ae3c-53766ad68931"/>
+				<textElement textAlignment="Right">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{valorUnitario}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
