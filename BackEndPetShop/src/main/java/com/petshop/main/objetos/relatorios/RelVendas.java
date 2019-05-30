@@ -40,13 +40,13 @@ public class RelVendas {
         Date data = c.getTime();
         f.setPeriodoInicial(data);
         try {
-            r.gerarRelatorioClientesAnalitico(f);
+            r.gerarRelatorioVendas(f);
         } catch (Exception ex) {
             Logger.getLogger(RelVendas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public byte[] gerarRelatorioClientesAnalitico(FiltroRelVendas f) throws Exception {
+    public byte[] gerarRelatorioVendas(FiltroRelVendas f) throws Exception {
         TransacaoPostgres transacao = new TransacaoPostgres();
         Connection connection = transacao.conectarBanco();
         String query = "";   
@@ -109,8 +109,8 @@ public class RelVendas {
             pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
             pdfExporter.exportReport();
 
-            JasperViewer jv = new JasperViewer(print, false);
-            jv.setVisible(true);
+//            JasperViewer jv = new JasperViewer(print, false);
+//            jv.setVisible(true);
 
             return pdfReportStream.toByteArray();
 

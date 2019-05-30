@@ -28,5 +28,10 @@ export class ProdutoService {
   alterar(produto : any) {
     return this.http.put<any>(this.produtosUrl + '/' + produto.id, produto);
   }
+  downloadPdf() {
+    return this.http
+              .get(this.produtosUrl + "/rel", { responseType:'blob' })
+      .toPromise();
+  }
 
 }
