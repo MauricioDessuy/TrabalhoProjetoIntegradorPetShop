@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProdutoService } from '../../produto.service';
 import { SnackBarUtil } from '../../snack-bar-util';
-import { saveAs } from 'file-saver'
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-produto-form',
@@ -70,7 +70,7 @@ export class ProdutoFormComponent implements OnInit {
     this.produtoService.downloadPdf()
       .then(blob => {
         console.log(blob);
-        saveAs(blob, 'testing.pdf');
+        saveAs(blob, 'RelatórioVenda-'+new Date().toLocaleDateString()+".pdf");
       });
   }
 
