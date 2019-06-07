@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProdutoService } from '../../produto.service';
 import { SnackBarUtil } from '../../snack-bar-util';
-
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-produto-form',
@@ -12,14 +12,14 @@ import { SnackBarUtil } from '../../snack-bar-util';
 })
 export class ProdutoFormComponent implements OnInit {
 
-  produto : any;
-  idProduto : any;
-  inclusao : boolean;
+  produto: any;
+  idProduto: any;
+  inclusao: boolean;
 
   constructor(private produtoService: ProdutoService,
-              private router: Router, 
-              private minhaRota: ActivatedRoute,
-              private snackBarUtil: SnackBarUtil) { }
+    private router: Router,
+    private minhaRota: ActivatedRoute,
+    private snackBarUtil: SnackBarUtil) { }
 
   ngOnInit() {
     this.minhaRota.params.subscribe(res => this.idProduto = res.id);
@@ -64,6 +64,14 @@ export class ProdutoFormComponent implements OnInit {
 
   retornar() {
     this.router.navigate(['cad-produto']);
+  }
+
+  teste() {
+    this.produtoService.downloadPdf()
+      .then(blob => {
+        console.log(blob);
+        saveAs(blob, 'RelatórioVenda-'+new Date().toLocaleDateString()+".pdf");
+      });
   }
 
 }

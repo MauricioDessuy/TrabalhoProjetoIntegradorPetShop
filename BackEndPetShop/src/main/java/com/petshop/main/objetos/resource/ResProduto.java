@@ -1,8 +1,12 @@
 package com.petshop.main.objetos.resource;
 
 import com.petshop.main.objetos.model.Produto;
+import com.petshop.main.objetos.relatorios.RelVendas;
 import com.petshop.main.objetos.repository.ProdutoDAO;
+import filtros.FiltroRelVendas;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -77,5 +81,16 @@ public class ResProduto {
         produtoDAO.delete(produto);
 
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/rel")
+    public byte[] relatorio(){
+        RelVendas rel = new RelVendas();
+        byte[] gerarRelatorioVendas = null;
+        try {
+            gerarRelatorioVendas = rel.gerarRelatorioVendas(new FiltroRelVendas());
+        } catch (Exception ex) {
+            Logger.getLogger(ResProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gerarRelatorioVendas;
     }
 }
