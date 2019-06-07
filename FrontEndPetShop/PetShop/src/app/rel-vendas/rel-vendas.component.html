@@ -1,0 +1,61 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container centralizar">
+      <h2>Relatório de Vendas</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="gerarRelatorio()">
+        <mat-card>
+          <mat-card-title>Filtros</mat-card-title>
+          <mat-card-subtitle>Preencha os filtros que serão utilizados para gerar o relatório</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-3 form-group container80">
+                <label for="dataInicial">Data Inicial</label>
+                <input type="date" id="dataInicial" name="dataInicial" class="form-control" placeholder="Data"
+                  [(ngModel)]="filtro.dataInicial" />
+              </div>
+              <div class="espacosPadding">
+                <h6>Á</h6>
+              </div>
+              <div class="col-md-3 form-group container80">
+                <label for="dataFinal">Data Final</label>
+                <input type="date" id="dataFinal" name="dataFinal" class="form-control" placeholder="Data"
+                  [(ngModel)]="filtro.dataFinal" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 form-group">
+                <mat-form-field>
+                  <mat-label>Forma de Pagamento</mat-label>
+                  <mat-select matInput id="formaPagamento" name="formaPagamento" [(ngModel)]="filtro.formaPagamento">
+                    <mat-option value="-1" [value]="-1">Todas</mat-option>
+                    <mat-option value="0" [value]="0">Dinheiro</mat-option>
+                    <mat-option value="1" [value]="1">Cartão</mat-option>
+                    <mat-option value="2" [value]="2">A Prazo</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <br>
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Finalizar</button>
+      </form>
+    </div>
+  </section>
+
+  <section *ngIf="relGerado">
+    <br>
+    <br>
+    <div class="container centralizar">
+      <h2>Relatório</h2>
+    </div>
+    <hr>
+    <app-pdf-view></app-pdf-view>
+  </section>
+</main>

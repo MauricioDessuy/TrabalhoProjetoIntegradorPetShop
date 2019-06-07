@@ -1,0 +1,17 @@
+<div class="pdf-container">
+  <div *ngIf="carregou" style="text-align: center;">
+    <div class="row d-flex justify-content-center">
+      <div class="">
+        <button class="btn btn-primary" (click)="paginaAnterior()" [disabled]="pagina === 1">Anterior</button>
+      </div>
+      <div class="buttonsPdf">
+        <span>{{ pagina }} / {{ totalPaginas }}</span>
+      </div>
+      <div class="">
+        <button class="btn btn-primary" (click)="proximaPagina()" [disabled]="pagina === totalPaginas">Próxima</button>
+      </div>
+    </div>
+  </div>
+  <pdf-viewer [src]="src" [show-all]="false" [page]="pagina" (after-load-complete)="relCarregado($event)">
+  </pdf-viewer>
+</div>
