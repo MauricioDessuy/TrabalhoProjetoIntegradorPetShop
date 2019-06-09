@@ -3,9 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProdutoService } from '../produto.service';
 
 export interface DialogData {
-    idProduto : string;
-    nomeProduto : string;
-    produto : any;
+    idProduto: string;
+    nomeProduto: string;
+    produto: any;
 }
 
 @Component({
@@ -15,12 +15,14 @@ export interface DialogData {
 export class ProdutoListDialog {
 
     produtos: Array<any>;
-    idProdutoSelecionada : any;
+    idProdutoSelecionada: any;
+    filtro: any;
 
     constructor(
         public dialogRef: MatDialogRef<ProdutoListDialog>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private produtoService: ProdutoService) {
+        this.filtro = {};
         this.listar();
     }
 
@@ -29,6 +31,12 @@ export class ProdutoListDialog {
     }
 
     listar() {
-        this.produtoService.listar().subscribe(dados => this.produtos = dados);
+        this.produtoService.listar('').subscribe(dados => this.produtos = dados);
+    }
+
+    teclaDigitada(event) {
+        if (event.key === "Enter") {
+            this.produtoService.listar(this.filtro.nome).subscribe(dados => this.produtos = dados);
+        }
     }
 }

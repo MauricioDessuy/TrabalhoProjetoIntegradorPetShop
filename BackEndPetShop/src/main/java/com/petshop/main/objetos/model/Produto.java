@@ -43,7 +43,7 @@ public class Produto implements Serializable {
         return valorUnitario;
     }
 
-    public void setValorUnitario(float valorUnitario) {
+    public void setValorUnitario(Float valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
     

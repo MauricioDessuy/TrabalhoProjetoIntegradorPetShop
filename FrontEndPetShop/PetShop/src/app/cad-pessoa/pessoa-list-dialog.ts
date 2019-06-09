@@ -17,11 +17,13 @@ export class PessoaListDialog {
 
     pessoas: Array<any>;
     idPessoaSelecionada : any;
+    filtro: any;
 
     constructor(
         public dialogRef: MatDialogRef<PessoaListDialog>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private pessoaService: PessoaService) {
+        this.filtro = {};
         this.listar();
     }
 
@@ -30,6 +32,12 @@ export class PessoaListDialog {
     }
 
     listar() {
-        this.pessoaService.listar().subscribe(dados => this.pessoas = dados);
+        this.pessoaService.listar('').subscribe(dados => this.pessoas = dados);
+    }
+
+    teclaDigitada(event) {
+        if (event.key === "Enter") {
+            this.pessoaService.listar(this.filtro.nome).subscribe(dados => this.pessoas = dados);
+        }
     }
 }
