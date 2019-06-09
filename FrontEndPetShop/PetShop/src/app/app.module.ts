@@ -52,6 +52,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { from } from 'rxjs';
 import { ModCirurgiaComponent } from './mod-cirurgia/mod-cirurgia.component';
 import { CirurgiaService } from './cirurgia.service';
+import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
 
 const materialModules = [
   MatButtonModule,
@@ -83,13 +84,11 @@ const materialModules = [
     ProdutoListDialog,
     CadFornecedorComponent,
     FornecedorFormComponent,
-<<<<<<< Updated upstream
     RelVendasComponent,
-    PdfViewComponent
+    PdfViewComponent,
     FornecedorFormComponent,
-=======
->>>>>>> Stashed changes
-    ModCirurgiaComponent
+    MovVacinaComponent
+    //ModCirurgiaComponent
   ],
   imports: [
     BrowserModule,
