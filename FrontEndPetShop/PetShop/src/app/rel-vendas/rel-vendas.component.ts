@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { PdfViewComponent } from '../pdf-view/pdf-view.component';
-import { RelvendasService } from '../relvendas.service';
+import { VendaService } from '../venda.service';
+import { saveAs } from 'file-saver';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rel-vendas',
@@ -11,23 +12,30 @@ import { RelvendasService } from '../relvendas.service';
 export class RelVendasComponent implements OnInit {
 
   private filtro : any;
-  private relGerado : boolean;
   
-  constructor(private pdfView : PdfViewComponent, private relvenda : RelvendasService) { }
+  constructor(private pdfView : PdfViewComponent, private relvenda : VendaService, private router: Router,
+    private minhaRota: ActivatedRoute) { }
 
   ngOnInit() {
     this.filtro = {};
     this.filtro.formaPagamento = -1;
-    this.relGerado = false;
   }
 
   gerarRelatorio() {
-    this.relvenda.gerarRelatorio(this.filtro).subscribe(resposta => {
-      console.log(resposta.pdf);
-      //this.pdfView.setPdf(resposta.pdf);
-      this.pdfView.setPdf("https://indubrasil.org.br/post/ba2170962b.pdf");
+    var dtIniTemp = this.filtro.dataInicial;
+    var dtFinTemp = this.filtro.dataFinal;
+    if (this.filtro.dataInicial != null && this.filtro.dataInicial != '') {
+      this.filtro.dataInicial = new Date(this.filtro.dataInicial + ' 03:00:00 GMT');
+    }
+    if (this.filtro.dataFinal != null && this.filtro.dataFinal != '') {
+      this.filtro.dataFinal = new Date(this.filtro.dataFinal + ' 03:00:00 GMT');
+    }
+    this.relvenda.gerarRelatorio(this.filtro).subscribe(blob => {
+      saveAs(blob, 'RelatórioVenda-' + new Date().toLocaleDateString() + ".pdf");
+      this.pdfView.setPdf(blob);
     });
-    this.relGerado = true;
+    this.filtro.dataInicial = dtIniTemp;
+    this.filtro.dataFinal = dtFinTemp;
   }
 
 }

@@ -29,4 +29,9 @@ export class VendaService {
   alterar(venda : any) {
     return this.http.put<any>(this.vendasUrl + '/' + venda.id, venda);
   }
+
+  gerarRelatorio(filtro : any) {
+    return this.http.post(this.vendasUrl + "/rel", filtro, { responseType:'blob' });
+      //.toPromise();
+  }
 }

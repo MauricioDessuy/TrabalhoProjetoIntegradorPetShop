@@ -47,3 +47,6 @@
     margin-top: 15%;
 }
 
+.espacosPadding > * {
+    text-align: center;
+}

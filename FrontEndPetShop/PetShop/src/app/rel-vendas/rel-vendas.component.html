@@ -18,9 +18,7 @@
                 <input type="date" id="dataInicial" name="dataInicial" class="form-control" placeholder="Data"
                   [(ngModel)]="filtro.dataInicial" />
               </div>
-              <div class="espacosPadding">
-                <h6>Á</h6>
-              </div>
+              <div class="col-md-1"><h6 class="centralizar">Á</h6></div>
               <div class="col-md-3 form-group container80">
                 <label for="dataFinal">Data Final</label>
                 <input type="date" id="dataFinal" name="dataFinal" class="form-control" placeholder="Data"
@@ -47,15 +45,5 @@
           [disabled]="frm.invalid">Finalizar</button>
       </form>
     </div>
-  </section>
-
-  <section *ngIf="relGerado">
-    <br>
-    <br>
-    <div class="container centralizar">
-      <h2>Relatório</h2>
-    </div>
-    <hr>
-    <app-pdf-view></app-pdf-view>
   </section>
 </main>

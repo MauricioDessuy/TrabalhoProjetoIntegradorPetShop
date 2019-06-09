@@ -1,9 +1,13 @@
 package com.petshop.main.objetos.resource;
 
 import com.petshop.main.objetos.model.Venda;
+import com.petshop.main.objetos.relatorios.RelVendas;
 import com.petshop.main.objetos.repository.VendaDAO;
 import com.petshop.main.objetos.repository.VendaItemDAO;
+import filtros.FiltroRelVendas;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +85,18 @@ public class ResVenda {
         vendaDAO.delete(venda);
 
         return ResponseEntity.noContent().build();
+    }
+    
+    @PostMapping("/rel")
+    public byte[] relatorio(@RequestBody FiltroRelVendas filtro) {
+        RelVendas rel = new RelVendas();
+        byte[] gerarRelatorioVendas = null;
+        try {
+            gerarRelatorioVendas = rel.gerarRelatorioVendas(filtro);
+        } catch (Exception ex) {
+            Logger.getLogger(ResProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gerarRelatorioVendas;
     }
 
 }

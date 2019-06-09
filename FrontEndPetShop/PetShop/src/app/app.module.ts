@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { AppComponent } from './app.component';
 import { TutorService } from './tutor.service';
@@ -46,7 +46,9 @@ import { PessoaListDialog } from './cad-pessoa/pessoa-list-dialog';
 import { SnackBarUtil } from './snack-bar-util';
 import { ProdutoListDialog } from './cad-produto/produto-list-dialog';
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
-import { from } from 'rxjs';
+import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
+import { PdfViewComponent } from './pdf-view/pdf-view.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const materialModules = [
   MatButtonModule,
@@ -77,12 +79,14 @@ const materialModules = [
     PessoaListDialog,
     ProdutoListDialog,
     CadFornecedorComponent,
-    FornecedorFormComponent
+    FornecedorFormComponent,
+    RelVendasComponent,
+    PdfViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     NgxMaskModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -92,12 +96,14 @@ const materialModules = [
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    PdfViewerModule
   ],
   exports: [
     materialModules
   ],
-  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, FornecedorService, SnackBarUtil, VendaService ],
+  providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, 
+    FornecedorService, SnackBarUtil, VendaService, PdfViewerModule, PdfViewComponent ],
   bootstrap: [AppComponent],
   entryComponents: [PessoaListDialog, ProdutoListDialog],
 })
