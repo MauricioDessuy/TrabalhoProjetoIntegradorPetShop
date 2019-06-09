@@ -83,9 +83,12 @@ const materialModules = [
     ProdutoListDialog,
     CadFornecedorComponent,
     FornecedorFormComponent,
+<<<<<<< Updated upstream
     RelVendasComponent,
     PdfViewComponent
     FornecedorFormComponent,
+=======
+>>>>>>> Stashed changes
     ModCirurgiaComponent
   ],
   imports: [
