@@ -9,8 +9,12 @@ export class PessoaService {
 
   constructor(private http: HttpClient) { }
 
-  listar() {
-    return this.http.get<any[]>(this.pessoasUrl);
+  listar(nome : any) {
+    if (nome != null && nome != '') {
+      return this.http.get<any[]>(this.pessoasUrl + '?nome=' + nome);
+    } else {
+      return this.http.get<any[]>(this.pessoasUrl);
+    }
   }
 
   adicionar(pessoa : any) {
