@@ -49,6 +49,9 @@ import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornec
 import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
 import { PdfViewComponent } from './pdf-view/pdf-view.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { from } from 'rxjs';
+import { ModCirurgiaComponent } from './mod-cirurgia/mod-cirurgia.component';
+import { CirurgiaService } from './cirurgia.service';
 
 const materialModules = [
   MatButtonModule,
@@ -82,6 +85,8 @@ const materialModules = [
     FornecedorFormComponent,
     RelVendasComponent,
     PdfViewComponent
+    FornecedorFormComponent,
+    ModCirurgiaComponent
   ],
   imports: [
     BrowserModule,
