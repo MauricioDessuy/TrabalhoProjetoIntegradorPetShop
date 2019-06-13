@@ -1,35 +1,13 @@
 <main role="main">
   <section class="my-4">
-    <div class="container">
+    <div class="container centralizar">
       <h2>Cadastro de animal</h2>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" [(ngModel)]="animal.nome"
-            required />
-        </div>
-
-        <div class="form-group">
-          <label for="raca">Raça</label>
-          <input type="text" id="raca" name="raca" class="form-control" placeholder="Raça" [(ngModel)]="animal.raca"
-            required />
-        </div>
-
-        <div class="form-group">
-          <label for="data">Data Nascimento</label>
-          <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" placeholder="Data"
-            [(ngModel)]="animal.dataNascimento" required />
-        </div>
-
-        
-
-        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Salvar</button>
-      </form>
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary" (click)="irParaNovo()">Cadastrar novo</button>
     </div>
   </section>
 
@@ -45,9 +23,6 @@
 
               <th class="w-25">Raça</th>
 
-              <th class="w-25">Data de Nascimento</th>
-
-              <th class="w-25">Data de Obito</th>
             </tr>
           </thead>
 
@@ -59,15 +34,20 @@
 
               <td>{{animal.raca}}</td>
 
-              <td>{{animal.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                <button mat-icon-button (click)="redirecionarParaAlteracao(animal.id)">
+                  <mat-icon>description</mat-icon>
+                </button>
+              </td>
 
-              <td>{{animal.dataObito | date: 'dd/MM/yyyy'}}</td>
-
-              <td><button (click)="deletar(animal.id)">Excluir</button></td>
+              <td>
+                <button mat-icon-button color="warn" (click)="deletar(animal.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
-</main>

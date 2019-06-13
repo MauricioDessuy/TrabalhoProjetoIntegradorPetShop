@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { AnimalService } from '../animal.service';
 
 @Component({
@@ -9,15 +9,15 @@ import { AnimalService } from '../animal.service';
   styleUrls: ['./cad-animal.component.css']
 })
 export class CadAnimalComponent implements OnInit {
-
+  
+  private idPessoa: any;
   animals: Array<any>;
   animal: any;
   animalFiltro : any;
-  private idPessoa: any;
+  private idAnimal: any;
 
-  constructor(private animalService: AnimalService, private route: ActivatedRoute) {
-
-    this.route.params.subscribe(res => this.idPessoa = res.id);
+  constructor(private animalService: AnimalService, private minhaRota: ActivatedRoute, private router : Router) {
+    this.minhaRota.params.subscribe(res => this.idPessoa = res.id);
    }
 
   ngOnInit() {
@@ -43,9 +43,16 @@ export class CadAnimalComponent implements OnInit {
 
   deletar(id : any) {
     this.animalService.deletar(id).subscribe(resposta => {
-      console.log(resposta);
       this.listar();
     });
+  }
+
+  redirecionarParaAlteracao(id: any) {
+    this.router.navigate([this.idPessoa + '/cad-animal/' + id]);
+  }
+
+  irParaNovo() {
+    this.router.navigate([this.idPessoa + '/cad-animal/novo']);
   }
 
 }

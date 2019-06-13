@@ -47,6 +47,7 @@ import { SnackBarUtil } from './snack-bar-util';
 import { ProdutoListDialog } from './cad-produto/produto-list-dialog';
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
 import { from } from 'rxjs';
+import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const materialModules = [
   MatButtonModule,
@@ -77,7 +78,8 @@ const materialModules = [
     PessoaListDialog,
     ProdutoListDialog,
     CadFornecedorComponent,
-    FornecedorFormComponent
+    FornecedorFormComponent,
+    AnimalFormComponent
   ],
   imports: [
     BrowserModule,
