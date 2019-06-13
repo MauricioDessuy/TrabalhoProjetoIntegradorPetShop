@@ -64,7 +64,7 @@ const materialModules = [
   MatOptionModule,
   MatSnackBarModule,
   MatDialogModule,
-  MatRadioModule,
+  MatRadioModule
 ];
 
 @NgModule({
@@ -83,7 +83,7 @@ const materialModules = [
     CadFornecedorComponent,
     FornecedorFormComponent,
     RelVendasComponent,
-    PdfViewComponent
+    PdfViewComponent,
     FornecedorFormComponent,
     AnimalFormComponent
   ],
