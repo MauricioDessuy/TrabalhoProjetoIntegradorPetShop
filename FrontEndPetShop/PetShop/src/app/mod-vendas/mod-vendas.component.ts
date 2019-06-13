@@ -44,6 +44,7 @@ export class ModVendasComponent implements OnInit {
     this.venda = {};
     this.venda.valorTotal = 0;
     this.venda.listaItens = new Array();
+    this.venda.formaPagamento = 0;
     this.vlrDesconto = 0.00;
     this.quantidade = 1;
     this.numeroItem = 0;

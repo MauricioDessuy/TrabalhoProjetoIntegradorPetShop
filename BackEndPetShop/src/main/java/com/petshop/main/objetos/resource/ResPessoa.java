@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,8 +36,15 @@ public class ResPessoa {
     }
 
     @GetMapping
-    public List<Pessoa> listar() {
+    public List<Pessoa> listar(@RequestParam(required = false) String nome) {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
+        if (nome != null) {
+            Pessoa pessoa = new Pessoa();
+            pessoa.setNome(nome);
+            ExampleMatcher matcher = ExampleMatcher.matchingAny().withMatcher("nome", GenericPropertyMatchers.contains());
+            Example<Pessoa> example = Example.<Pessoa>of(pessoa, matcher);
+            return pessoaDAO.findAll(example, ordenador);
+        }
         return pessoaDAO.findAll(ordenador);
     }
 

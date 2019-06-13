@@ -9,8 +9,12 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  listar() {
-    return this.http.get<any[]>(this.produtosUrl);
+  listar(nome : any) {
+    if (nome != null && nome != '') {
+      return this.http.get<any[]>(this.produtosUrl + "?nome=" + nome + "");
+    } else {
+      return this.http.get<any[]>(this.produtosUrl);
+    }
   }
 
   adicionar(produto : any) {
@@ -28,10 +32,9 @@ export class ProdutoService {
   alterar(produto : any) {
     return this.http.put<any>(this.produtosUrl + '/' + produto.id, produto);
   }
+  
   downloadPdf() {
-    return this.http
-              .get(this.produtosUrl + "/rel", { responseType:'blob' })
-      .toPromise();
+    return this.http.get(this.produtosUrl + "/rel", { responseType:'blob' }).toPromise();
   }
 
 }

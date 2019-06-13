@@ -11,6 +11,7 @@ import { ProdutoFormComponent } from './cad-produto/produto-form/produto-form.co
 import { ModVendasComponent } from './mod-vendas/mod-vendas.component';
 import { CadFornecedorComponent } from './cad-fornecedor/cad-fornecedor.component';
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
+import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: ':id_pessoa/cad-animal/novo', component: AnimalFormComponent, canActivate : [ AuthGuard ] },
   { path: ':id_pessoa/cad-animal/:id', component: AnimalFormComponent, canActivate : [ AuthGuard ] },
   { path: 'mod-vendas', component: ModVendasComponent, canActivate : [ AuthGuard ] },
+  { path: 'rel-vendas', component: RelVendasComponent, canActivate : [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', component: Erro404Component }

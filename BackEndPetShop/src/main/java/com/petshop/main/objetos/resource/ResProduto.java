@@ -1,17 +1,14 @@
 package com.petshop.main.objetos.resource;
 
 import com.petshop.main.objetos.model.Produto;
-import com.petshop.main.objetos.relatorios.RelVendas;
 import com.petshop.main.objetos.repository.ProdutoDAO;
-import filtros.FiltroRelVendas;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -38,9 +36,18 @@ public class ResProduto {
     }
 
     @GetMapping
-    public List<Produto> listar() {
+    public List<Produto> listar(@RequestParam(required = false) String nome) {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return produtoDAO.findAll(ordenador);
+        if (nome != null) {
+            Produto produto = new Produto();
+            produto.setValorUnitario(Float.MIN_VALUE);
+            produto.setNome(nome);
+            ExampleMatcher matcher = ExampleMatcher.matchingAny().withMatcher("nome", GenericPropertyMatchers.contains());
+            Example<Produto> example = Example.<Produto>of(produto, matcher);
+            return produtoDAO.findAll(example, ordenador);
+        } else {
+            return produtoDAO.findAll(ordenador);
+        }
     }
 
     @GetMapping("/{id}")
@@ -82,15 +89,5 @@ public class ResProduto {
 
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/rel")
-    public byte[] relatorio(){
-        RelVendas rel = new RelVendas();
-        byte[] gerarRelatorioVendas = null;
-        try {
-            gerarRelatorioVendas = rel.gerarRelatorioVendas(new FiltroRelVendas());
-        } catch (Exception ex) {
-            Logger.getLogger(ResProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return gerarRelatorioVendas;
-    }
+    
 }

@@ -30,7 +30,7 @@ export class CadPessoaComponent implements OnInit {
   }
 
   listar() {
-    this.pessoaService.listar()
+    this.pessoaService.listar('')
       .subscribe(dados => this.pessoas = dados);
   }
 

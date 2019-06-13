@@ -1,18 +1,20 @@
 package com.petshop.main.objetos.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "produtos")
-public class Produto implements Serializable {
+@Table(name = "cirurgias")
+public class Cirurgia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,32 +22,20 @@ public class Produto implements Serializable {
     private Long id;
 
     @NotBlank
-    @Column(name = "nome")
-    private String nome;
-    
-    @NotBlank
-    @Column(name = "marca")
-    private String marca;
-    
+    @Column(name = "decricao")
+    private String descricao;
+
+    @Column(name = "valor")
+    private double valor;
+
+    @Column(name = "data_agendamento")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date dataAgendamento;
+
     @NotNull
-    @Column(name = "valor_unitario")
-    private Float valorUnitario;
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public float getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(Float valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
+    @NotBlank
+    @Column(name = "usuario")
+    private String usuario;
     
     public Long getId() {
         return id;
@@ -55,13 +45,39 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public Date getDataAgendamento() {
+        return dataAgendamento;
+    }
+
+    public void setDataAgendamento(Date dataAgendamento) {
+        this.dataAgendamento = dataAgendamento;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    
 
     @Override
     public int hashCode() {
@@ -82,7 +98,7 @@ public class Produto implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Produto other = (Produto) obj;
+        Cirurgia other = (Cirurgia) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

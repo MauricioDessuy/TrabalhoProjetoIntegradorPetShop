@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class FiltroRelVendas {
 
-    private Date periodoInicial;
-    private Date periodoFinal;
+    private Date dataInicial;
+    private Date dataFinal;
     private int formaPagamento;
 
     public int getFormaPagamento() {
@@ -16,20 +16,20 @@ public class FiltroRelVendas {
         this.formaPagamento = formaPagamento;
     }
 
-    public Date getPeriodoInicial() {
-        return periodoInicial;
+    public Date getDataInicial() {
+        return dataInicial;
     }
 
-    public void setPeriodoInicial(Date periodoInicial) {
-        this.periodoInicial = periodoInicial;
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
     }
 
-    public Date getPeriodoFinal() {
-        return periodoFinal;
+    public Date getDataFinal() {
+        return dataFinal;
     }
 
-    public void setPeriodoFinal(Date periodoFinal) {
-        this.periodoFinal = periodoFinal;
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
     }
 
 }
