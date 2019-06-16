@@ -21,11 +21,7 @@ export class CadProdutoComponent implements OnInit {
   }
 
   listar() {
-<<<<<<< HEAD
-    this.produtoService.listar("")
-=======
     this.produtoService.listar('')
->>>>>>> master
       .subscribe(dados => this.produtos = dados);
   }
 

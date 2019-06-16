@@ -54,7 +54,6 @@ import { ModCirurgiaComponent } from './mod-cirurgia/mod-cirurgia.component';
 import { CirurgiaService } from './cirurgia.service';
 import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
 import { AnimalListDialog } from './cad-animal/animal-list-dialog';
-import { from } from 'rxjs';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const materialModules = [
@@ -91,7 +90,7 @@ const materialModules = [
     PdfViewComponent,
     FornecedorFormComponent,
     MovVacinaComponent,
-    AnimalListDialog
+    AnimalListDialog,
     //ModCirurgiaComponent
     PdfViewComponent,
     FornecedorFormComponent,
