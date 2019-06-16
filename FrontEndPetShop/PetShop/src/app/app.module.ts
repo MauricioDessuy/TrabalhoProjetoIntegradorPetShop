@@ -53,6 +53,7 @@ import { from } from 'rxjs';
 import { ModCirurgiaComponent } from './mod-cirurgia/mod-cirurgia.component';
 import { CirurgiaService } from './cirurgia.service';
 import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
+import { AnimalListDialog } from './cad-animal/animal-list-dialog';
 
 const materialModules = [
   MatButtonModule,
@@ -87,7 +88,8 @@ const materialModules = [
     RelVendasComponent,
     PdfViewComponent,
     FornecedorFormComponent,
-    MovVacinaComponent
+    MovVacinaComponent,
+    AnimalListDialog
     //ModCirurgiaComponent
   ],
   imports: [
@@ -112,6 +114,6 @@ const materialModules = [
   providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, 
     FornecedorService, SnackBarUtil, VendaService, PdfViewerModule, PdfViewComponent ],
   bootstrap: [AppComponent],
-  entryComponents: [PessoaListDialog, ProdutoListDialog],
+  entryComponents: [PessoaListDialog, ProdutoListDialog, AnimalListDialog],
 })
 export class AppModule { }

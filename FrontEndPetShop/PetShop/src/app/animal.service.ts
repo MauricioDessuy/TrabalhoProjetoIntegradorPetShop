@@ -12,6 +12,9 @@ export class AnimalService {
   listar(animalFiltro : any) {
     return this.http.post<any[]>(this.animalsUrl + "/pessoa/" + animalFiltro.idPessoa, animalFiltro);
   }
+  listarTodos() {
+    return this.http.get<any[]>(this.animalsUrl);
+  }
 
   adicionar(animal : any) {
     return this.http.post(this.animalsUrl, animal);
@@ -19,6 +22,9 @@ export class AnimalService {
 
   deletar(id : any) {
     return this.http.delete(this.animalsUrl + '/' + id)
+  }
+  buscar(id : any) {
+    return this.http.get<any>(this.animalsUrl + '/' + id);
   }
 
 }

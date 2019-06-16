@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,13 +35,10 @@ public class ResAnimalVacina {
         return animalVacinaDAO.save(animalVacina);
     }
 
-    @PostMapping("/pessoa/{id}")
-    public List<AnimalVacina> listar(@RequestBody AnimalVacina animalVacina) {
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("pessoa", GenericPropertyMatchers.ignoreCase());
-        Example<AnimalVacina> example = Example.<AnimalVacina>of(animalVacina, matcher);
+    @GetMapping
+    public List<AnimalVacina> listar() {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return animalVacinaDAO.findAll(example, ordenador);
+        return animalVacinaDAO.findAll(ordenador);
     }
 
     @GetMapping("/{id}")

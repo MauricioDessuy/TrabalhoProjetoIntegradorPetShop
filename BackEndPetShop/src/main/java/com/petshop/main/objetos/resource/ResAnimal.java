@@ -42,6 +42,12 @@ public class ResAnimal {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
         return animalDAO.findAll(example, ordenador);
     }
+    
+    @GetMapping
+    public List<Animal> listarTodos() {
+        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
+        return animalDAO.findAll(ordenador);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Animal> buscar(@PathVariable Long id) {

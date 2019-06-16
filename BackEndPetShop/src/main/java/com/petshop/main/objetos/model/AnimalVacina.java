@@ -30,6 +30,14 @@ public class AnimalVacina implements Serializable {
     @JoinColumn(name = "id_produto", referencedColumnName = "id")
     private Produto produto;
 
+    @Column(name = "data_vacinacao")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataVacinacao;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_animal", referencedColumnName = "id")
+    private Animal animal;
+
     public Long getId() {
         return id;
     }
@@ -61,15 +69,6 @@ public class AnimalVacina implements Serializable {
     public void setAnimal(Animal animal) {
         this.animal = animal;
     }
-
-    @Column(name = "data_vacinacao")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataVacinacao;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_animal", referencedColumnName = "id")
-    private Animal animal;
-
     @Override
     public int hashCode() {
         final int prime = 31;
