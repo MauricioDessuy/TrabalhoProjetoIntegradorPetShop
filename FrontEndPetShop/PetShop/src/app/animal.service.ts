@@ -10,7 +10,7 @@ export class AnimalService {
   constructor(private http: HttpClient) { }
 
   listar(animalFiltro : any) {
-    return this.http.post<any[]>(this.animalsUrl + "/pessoa/" + animalFiltro.idPessoa, animalFiltro);
+    return this.http.post<any[]>(this.animalsUrl + "/pessoa/" + animalFiltro.pessoa.id, animalFiltro);
   }
   listarTodos() {
     return this.http.get<any[]>(this.animalsUrl);
@@ -21,7 +21,15 @@ export class AnimalService {
   }
 
   deletar(id : any) {
-    return this.http.delete(this.animalsUrl + '/' + id)
+    return this.http.delete(this.animalsUrl + '/' + id);
+  }
+
+  buscar(id : any) {
+    return this.http.get<any>(this.animalsUrl + '/' + id);
+  }
+
+  alterar(animal : any) {
+    return this.http.put<any>(this.animalsUrl + '/' + animal.id, animal);
   }
   buscar(id : any) {
     return this.http.get<any>(this.animalsUrl + '/' + id);
