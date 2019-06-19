@@ -1,0 +1,87 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container centralizar">
+      <h2>Controle de vacinas</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
+        <mat-card>
+          <mat-card-title>Vacinas</mat-card-title>
+          <mat-card-subtitle>Adicione a vacina</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-1 container100">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="codProduto">Código</mat-label>
+                  <input matInput id="codProduto" name="codProduto" [(ngModel)]="idProduto"
+                    (focusout)="carregarCampoProduto(idProduto)" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-4 container100">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="nomeProduto">Nome</mat-label>
+                  <input matInput id="nomeProduto" name="nomeProduto" [(ngModel)]="nomeProduto" disabled />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-1 container100">
+                <a class="espacoCima" mat-icon-button (click)="abrirTabelaProduto()">
+                  <mat-icon>description</mat-icon>
+                </a>
+              </div>
+
+            </div>
+
+          </mat-card-content>
+
+
+
+          <mat-card-title>Animal</mat-card-title>
+          <mat-card-subtitle>Selecione o Animal</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-2">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="codAnimal">Código</mat-label>
+                  <input matInput id="codAnimal" name="codAnimal" [(ngModel)]="idAnimal"
+                    (focusout)="carregarCampoAnimal(idAnimal)" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-8 container100">
+                <mat-form-field appearance="legacy">
+                  <mat-label for="nome">Nome</mat-label>
+                  <input matInput id="nome" name="nome" [(ngModel)]="nomeAnimal" disabled />
+                </mat-form-field>
+              </div>
+              <div>
+                <a class="espacoCima" mat-icon-button (click)="abrirTabelaAnimal()">
+                  <mat-icon>description</mat-icon>
+                </a>
+              </div>
+            </div>
+          </mat-card-content>
+        <mat-card-title>Data de vacinação</mat-card-title>
+        <mat-card-subtitle>Selecione a data</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+              <div class="col-md-8 container20">
+              <label for="data">Data Vacinação</label>
+              <input type="date" id="data" name="data" class="form-control" placeholder="Data"
+                [(ngModel)]="vacina.dataVacinacao" required />
+            </div>
+          </div>
+        </mat-card-content>
+        </mat-card>
+        <br>
+
+        <br>
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Finalizar</button>
+      </form>
+    </div>
+  </section>
+</main>

@@ -12,6 +12,8 @@ import { ModVendasComponent } from './mod-vendas/mod-vendas.component';
 import { CadFornecedorComponent } from './cad-fornecedor/cad-fornecedor.component';
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
 import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
+import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
+import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const routes: Routes = [
   { path: 'cad-pessoa', component: CadPessoaComponent, canActivate : [ AuthGuard ] }, 
@@ -24,8 +26,11 @@ const routes: Routes = [
   { path: 'cad-fornecedor/novo', component: FornecedorFormComponent, canActivate : [ AuthGuard ] },
   { path: 'cad-fornecedor/:id', component: FornecedorFormComponent, canActivate : [ AuthGuard ] },
   { path: ':id/cad-animal', component: CadAnimalComponent, canActivate : [ AuthGuard ] },
+  { path: ':id_pessoa/cad-animal/novo', component: AnimalFormComponent, canActivate : [ AuthGuard ] },
+  { path: ':id_pessoa/cad-animal/:id', component: AnimalFormComponent, canActivate : [ AuthGuard ] },
   { path: 'mod-vendas', component: ModVendasComponent, canActivate : [ AuthGuard ] },
   { path: 'rel-vendas', component: RelVendasComponent, canActivate : [ AuthGuard ] },
+  { path: 'mov-vacina', component: MovVacinaComponent, canActivate : [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', component: Erro404Component }

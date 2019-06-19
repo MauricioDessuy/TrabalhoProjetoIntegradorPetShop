@@ -1,7 +1,7 @@
 package com.petshop.main.objetos.resource;
 
-import com.petshop.main.objetos.model.Animal;
-import com.petshop.main.objetos.repository.AnimalDAO;
+import com.petshop.main.objetos.model.AnimalVacina;
+import com.petshop.main.objetos.repository.AnimalVacinaDAO;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,71 +20,63 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/animais")
-public class ResAnimal {
+@RequestMapping("/animal_vacina")
+public class ResAnimalVacina {
 
     @Autowired
-    private AnimalDAO animalDAO;
+    private AnimalVacinaDAO animalVacinaDAO;
 
     @PostMapping
-    public Animal adicionar(@Valid @RequestBody Animal animal) {
-        return animalDAO.save(animal);
+    public AnimalVacina adicionar(@Valid @RequestBody AnimalVacina animalVacina) {
+        return animalVacinaDAO.save(animalVacina);
     }
 
-    @PostMapping("/pessoa/{id}")
-    public List<Animal> listar(@RequestBody Animal animal) {
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("pessoa", GenericPropertyMatchers.ignoreCase());
-        Example<Animal> example = Example.<Animal>of(animal, matcher);
-        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return animalDAO.findAll(example, ordenador);
-    }
-    
     @GetMapping
-    public List<Animal> listarTodos() {
+    public List<AnimalVacina> listar() {
         Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        return animalDAO.findAll(ordenador);
+        return animalVacinaDAO.findAll(ordenador);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Animal> buscar(@PathVariable Long id) {
-        Animal animal = animalDAO.findOne(id);
+    public ResponseEntity<AnimalVacina> buscar(@PathVariable Long id) {
+        AnimalVacina animalVacina = animalVacinaDAO.findOne(id);
 
-        if (animal == null) {
+        if (animalVacina == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(animal);
+        return ResponseEntity.ok(animalVacina);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Animal> atualizar(@PathVariable Long id,
-            @Valid @RequestBody Animal animal) {
-        Animal existente = animalDAO.findOne(id);
+    public ResponseEntity<AnimalVacina> atualizar(@PathVariable Long id,
+            @Valid @RequestBody AnimalVacina animalVacina) {
+        AnimalVacina existente = animalVacinaDAO.findOne(id);
 
         if (existente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        BeanUtils.copyProperties(animal, existente, "id");
+        BeanUtils.copyProperties(animalVacina, existente, "id");
 
-        existente = animalDAO.save(existente);
+        existente = animalVacinaDAO.save(existente);
 
         return ResponseEntity.ok(existente);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
-        Animal animal = animalDAO.findOne(id);
+        AnimalVacina animalVacina = animalVacinaDAO.findOne(id);
 
-        if (animal == null) {
+        if (animalVacina == null) {
             return ResponseEntity.notFound().build();
         }
 
-        animalDAO.delete(animal);
+        animalVacinaDAO.delete(animalVacina);
 
         return ResponseEntity.noContent().build();
     }

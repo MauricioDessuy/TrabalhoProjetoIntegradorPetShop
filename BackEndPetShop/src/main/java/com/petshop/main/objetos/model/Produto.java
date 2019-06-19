@@ -1,8 +1,11 @@
 package com.petshop.main.objetos.model;
 
+import com.petshop.main.enumeracoes.TipoProduto;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +33,19 @@ public class Produto implements Serializable {
     @NotNull
     @Column(name = "valor_unitario")
     private Float valorUnitario;
+    
+    @NotNull
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "tipo_produto")
+    private TipoProduto TipoProduto;
+
+    public TipoProduto getTipoProduto() {
+        return TipoProduto;
+    }
+
+    public void setTipoProduto(TipoProduto TipoProduto) {
+        this.TipoProduto = TipoProduto;
+    }
 
     public String getMarca() {
         return marca;

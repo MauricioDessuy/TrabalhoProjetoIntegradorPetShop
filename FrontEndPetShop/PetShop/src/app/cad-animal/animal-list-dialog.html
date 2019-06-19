@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Selecione um Animal</h1>
+<div mat-dialog-content>
+  <section class="mt-5">
+    <div class="form-group container100">
+      <mat-form-field appearance="legacy">
+        <mat-label for="nome">Nome</mat-label>
+        <input matInput type="text" id="nome" name="nome" class="form-control" placeholder="Nome"
+          [(ngModel)]="filtro.nome" (keydown)="teclaDigitada($event)" />
+      </mat-form-field>
+    </div>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>Código</th>
+
+              <th class="w-50">Nome</th>
+
+              <th class="w-25">Raça</th>
+
+              <th class="w-25">Tutor</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let animal of animais">
+              <td>
+                <mat-radio-group [(ngModel)]="idAnimalSelecionado">
+                  <mat-radio-button [value]="animal.id">{{animal.id}}</mat-radio-button>
+                </mat-radio-group>
+              </td>
+
+              <td>{{animal.nome}}</td>
+
+              <td>{{animal.raca}}</td>
+
+            <!--<td>{{animal.pessoa.nome}}</td>-->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button mat-button [mat-dialog-close]="idAnimalSelecionado">Ok</button>
+</div>
