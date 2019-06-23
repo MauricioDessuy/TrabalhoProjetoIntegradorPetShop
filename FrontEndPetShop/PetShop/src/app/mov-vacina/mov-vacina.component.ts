@@ -106,7 +106,7 @@ export class MovVacinaComponent implements OnInit {
   abrirTabelaProduto() {
     const dialogRef = this.dialog.open(ProdutoListDialog, {
       width: '850px',
-      data: {}
+      data: { tipo : 2 }
     });
 
     dialogRef.afterClosed().subscribe(result => {

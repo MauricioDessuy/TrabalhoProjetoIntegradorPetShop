@@ -37,14 +37,14 @@ public class Produto implements Serializable {
     @NotNull
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "tipo_produto")
-    private TipoProduto TipoProduto;
+    private TipoProduto tipoProduto;
 
     public TipoProduto getTipoProduto() {
-        return TipoProduto;
+        return tipoProduto;
     }
 
     public void setTipoProduto(TipoProduto TipoProduto) {
-        this.TipoProduto = TipoProduto;
+        this.tipoProduto = TipoProduto;
     }
 
     public String getMarca() {

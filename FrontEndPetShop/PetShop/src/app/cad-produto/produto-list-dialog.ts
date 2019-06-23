@@ -6,6 +6,7 @@ export interface DialogData {
     idProduto: string;
     nomeProduto: string;
     produto: any;
+    tipo : any;
 }
 
 @Component({
@@ -24,6 +25,7 @@ export class ProdutoListDialog {
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private produtoService: ProdutoService) {
         this.filtro = {};
+        this.tipo = data.tipo;
         this.listar();
     }
 

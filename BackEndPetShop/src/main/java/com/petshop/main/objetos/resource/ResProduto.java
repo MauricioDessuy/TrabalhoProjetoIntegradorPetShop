@@ -1,8 +1,16 @@
 package com.petshop.main.objetos.resource;
 
+import com.petshop.main.enumeracoes.TipoProduto;
 import com.petshop.main.objetos.model.Produto;
 import com.petshop.main.objetos.repository.ProdutoDAO;
+import com.petshop.main.postgresconnection.TransacaoPostgres;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,18 +44,51 @@ public class ResProduto {
     }
 
     @GetMapping
-    public List<Produto> listar(@RequestParam(required = false) String nome) {
-        Sort ordenador = new Sort(Sort.Direction.ASC, "id");
-        if (nome != null) {
-            Produto produto = new Produto();
-            produto.setValorUnitario(Float.MIN_VALUE);
-            produto.setNome(nome);
-            ExampleMatcher matcher = ExampleMatcher.matchingAny().withMatcher("nome", GenericPropertyMatchers.contains());
-            Example<Produto> example = Example.<Produto>of(produto, matcher);
-            return produtoDAO.findAll(example, ordenador);
-        } else {
-            return produtoDAO.findAll(ordenador);
+    public List<Produto> listar(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer tipoProduto) {
+        TransacaoPostgres transacao = new TransacaoPostgres();
+        Connection conexao = transacao.conectarBanco();
+        ArrayList<Produto> listaProdutos = new ArrayList();
+        try {
+            Statement stm = conexao.createStatement();
+            String sql = "SELECT * \n";
+            sql += "FROM produtos \n";
+            sql += "WHERE TRUE \n";
+            if (nome != null) {
+                sql += "AND nome LIKE '" + nome + "%' \n";
+            }
+            if (tipoProduto != null && tipoProduto != -1) {
+                if (tipoProduto == 0) {
+                    sql += "AND tipo_produto = " + 0;
+                } else if (tipoProduto == 2) {
+                    sql += "AND tipo_produto = " + 2;
+                }
+            }
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Produto produto = new Produto();
+                produto.setId(rs.getLong("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setMarca(rs.getString("marca"));
+                Integer tpProduto = rs.getInt("tipo_produto");
+                switch (tpProduto) {
+                    case 0:
+                        produto.setTipoProduto(TipoProduto.PRODUTO);
+                        break;
+                    case 1:
+                        produto.setTipoProduto(TipoProduto.SERVICO);
+                        break;
+                    case 2:
+                        produto.setTipoProduto(TipoProduto.VACINA);
+                        break;
+                }
+                produto.setValorUnitario(rs.getFloat("valor_unitario"));
+                listaProdutos.add(produto);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ResProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return listaProdutos;
     }
 
     @GetMapping("/{id}")
