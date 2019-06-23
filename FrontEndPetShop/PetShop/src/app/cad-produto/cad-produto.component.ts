@@ -21,7 +21,7 @@ export class CadProdutoComponent implements OnInit {
   }
 
   listar() {
-    this.produtoService.listar('')
+    this.produtoService.listar('', -1)
       .subscribe(dados => this.produtos = dados);
   }
 

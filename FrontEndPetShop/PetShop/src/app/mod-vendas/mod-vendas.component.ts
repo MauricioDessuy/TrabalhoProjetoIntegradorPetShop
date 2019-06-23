@@ -120,7 +120,7 @@ export class ModVendasComponent implements OnInit {
   abrirTabelaProduto() {
     const dialogRef = this.dialog.open(ProdutoListDialog, {
       width: '850px',
-      data: {}
+      data: { tipo : 0}
     });
 
     dialogRef.afterClosed().subscribe(result => {
