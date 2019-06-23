@@ -1,20 +1,94 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<header *ngIf="mostrarMenu">
-    <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+<header>
+    <!--  <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" routerLink="/cad-pessoa">Pessoas</a>
-            <a class="navbar-brand" routerLink="/cad-produto">Produtos</a>
-            <a class="navbar-brand" routerLink="/cad-fornecedor">Fornecedor</a>
-            <a class="navbar-brand" routerLink="/mod-vendas">Vendas</a>
-            <a class="navbar-brand" routerLink="/rel-vendas">Relatório de Vendas</a>
-            <a class="navbar-brand" routerLink="/mov-vacina">Vacinas</a>
+    
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-    </nav>
-</header>
+    </nav> -->
 
-<router-outlet></router-outlet>
+    <link href="/styles.css" rel="stylesheet">
+
+
+
+
+    <div *ngIf="mostrarMenu" class="row">
+        <nav class="navbar navbar-primary fixed-top bg-primary navbar-expand-lg flex-md-nowrap p-0 shadow">
+            <div class="col-md-4">
+                <a class="navbar-brand" style="color: white" href="#">Dashboard</a>
+            </div>
+            <div class="col-md-7">
+
+            </div>
+            <div class="col-md-1">
+                <button style="z-index: 1" class="btn btn-outline-dark" mat-button [matMenuTriggerFor]="menu">
+                    <b style="color: white"> Username</b>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </nav>
+    </div>
+    <app-login *ngIf="!mostrarMenu"></app-login>
+    <div *ngIf="mostrarMenu" class="row" style="padding-top: 40px; height: 768px;">
+        <div  class="col-md-2" style="background-color: #c2cad6">
+            <nav class=" d-none d-md-block bg-light sidebar dash">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/cad-pessoa">
+                                <button mat-icon-button>
+                                    <mat-icon>person</mat-icon>
+                                </button>
+                                Pessoas
+                            </div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/cad-produto">
+                                <button mat-icon-button>
+                                    <mat-icon>person</mat-icon>
+                                </button>
+                                Produtos
+                            </div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/cad-fornecedor">
+                                <button mat-icon-button>
+                                    <mat-icon>person</mat-icon>
+                                </button>
+                                Fornecedor</div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/mod-vendas">
+                                <button mat-icon-button>
+                                    <mat-icon>person</mat-icon>
+                                </button>
+                                Vendas</div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/rel-vendas">
+                                <button mat-icon-button>
+                                    <mat-icon>person</mat-icon>
+                                </button>
+                                Relatório de Vendas</div>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</header>
