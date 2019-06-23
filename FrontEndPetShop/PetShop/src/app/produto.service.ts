@@ -9,32 +9,28 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(nome : any) {
-    if (nome != null && nome != '') {
-      return this.http.get<any[]>(this.produtosUrl + "?nome=" + nome + "");
-    } else {
-      return this.http.get<any[]>(this.produtosUrl);
-    }
+  listar(nome: any, tipo: any) {
+    return this.http.get<any[]>(this.produtosUrl + "?nome=" + nome + "&tipoProduto=" + tipo);
   }
 
-  adicionar(produto : any) {
+  adicionar(produto: any) {
     return this.http.post(this.produtosUrl, produto);
   }
 
-  deletar(id : any) {
+  deletar(id: any) {
     return this.http.delete(this.produtosUrl + '/' + id)
   }
 
-  buscar(id : any) {
+  buscar(id: any) {
     return this.http.get<any>(this.produtosUrl + '/' + id);
   }
 
-  alterar(produto : any) {
+  alterar(produto: any) {
     return this.http.put<any>(this.produtosUrl + '/' + produto.id, produto);
   }
-  
+
   downloadPdf() {
-    return this.http.get(this.produtosUrl + "/rel", { responseType:'blob' }).toPromise();
+    return this.http.get(this.produtosUrl + "/rel", { responseType: 'blob' }).toPromise();
   }
 
 }

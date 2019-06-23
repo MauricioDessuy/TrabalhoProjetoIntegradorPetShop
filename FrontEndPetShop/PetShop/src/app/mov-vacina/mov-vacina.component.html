@@ -9,7 +9,7 @@
     <div class="container">
       <form method="post" #frm="ngForm" (ngSubmit)="adicionar(frm)">
         <mat-card>
-          <mat-card-title>Vacinas</mat-card-title>
+          <mat-card-title>Vacina</mat-card-title>
           <mat-card-subtitle>Adicione a vacina</mat-card-subtitle>
           <mat-card-content>
             <div class="row">
@@ -44,34 +44,43 @@
           <mat-card-subtitle>Selecione o Animal</mat-card-subtitle>
           <mat-card-content>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-1 container100">
                 <mat-form-field appearance="legacy">
                   <mat-label for="codAnimal">Código</mat-label>
                   <input matInput id="codAnimal" name="codAnimal" [(ngModel)]="idAnimal"
                     (focusout)="carregarCampoAnimal(idAnimal)" />
                 </mat-form-field>
               </div>
-              <div class="col-md-8 container100">
+              <div class="col-md-4 container100">
                 <mat-form-field appearance="legacy">
                   <mat-label for="nome">Nome</mat-label>
                   <input matInput id="nome" name="nome" [(ngModel)]="nomeAnimal" disabled />
                 </mat-form-field>
               </div>
-              <div>
+              <div class="col-md-1 container100">
                 <a class="espacoCima" mat-icon-button (click)="abrirTabelaAnimal()">
                   <mat-icon>description</mat-icon>
                 </a>
               </div>
             </div>
           </mat-card-content>
-        <mat-card-title>Data de vacinação</mat-card-title>
-        <mat-card-subtitle>Selecione a data</mat-card-subtitle>
+        <mat-card-title>Controle de vacinas</mat-card-title>
+        <mat-card-subtitle>Selecione as datas</mat-card-subtitle>
         <mat-card-content>
           <div class="row">
-              <div class="col-md-8 container20">
+              <div class="col-md-8 container30">
               <label for="data">Data Vacinação</label>
               <input type="date" id="data" name="data" class="form-control" placeholder="Data"
                 [(ngModel)]="vacina.dataVacinacao" required />
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-content>
+          <div class="row">
+              <div class="col-md-8 container30">
+              <label for="dataVencimento">Proxima Dose</label>
+              <input type="date" id="dataVencimento" name="dataVencimento" class="form-control" placeholder="Data"
+                [(ngModel)]="vacina.dataVencimento" required />
             </div>
           </div>
         </mat-card-content>

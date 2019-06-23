@@ -46,6 +46,7 @@ export class MovVacinaComponent implements OnInit {
 
   adicionar(frm: FormGroup) {
     this.vacina.dataVacinacao = new Date(this.vacina.dataVacinacao + ' 03:00:00 GMT');
+    this.vacina.dataVencimento = new Date(this.vacina.dataVencimento + ' 03:00:00 GMT');
     if (this.idAnimal == null) {
       this.snackBarUtil.openSnackBar("Informe o animal a ser vacinado", "OK");
       return;
@@ -106,7 +107,7 @@ export class MovVacinaComponent implements OnInit {
   abrirTabelaProduto() {
     const dialogRef = this.dialog.open(ProdutoListDialog, {
       width: '850px',
-      data: {}
+      data: { tipo : 2 }
     });
 
     dialogRef.afterClosed().subscribe(result => {
