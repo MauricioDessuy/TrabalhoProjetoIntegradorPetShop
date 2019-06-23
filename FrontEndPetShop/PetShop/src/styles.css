@@ -54,7 +54,7 @@
 
 .mouseMaozinha:hover > * {
     cursor: pointer;
-    color: white;
+    color: #007BFF;
     border-style: solid;
     border-radius: 5px;
 }

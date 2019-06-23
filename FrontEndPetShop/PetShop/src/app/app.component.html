@@ -1,20 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <header>
-    <!--  <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-        <div class="container">
-    
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav> -->
-
-    <link href="/styles.css" rel="stylesheet">
-
-
-
 
     <div *ngIf="mostrarMenu" class="row">
         <nav class="navbar navbar-primary fixed-top bg-primary navbar-expand-lg flex-md-nowrap p-0 shadow">
@@ -39,10 +25,18 @@
     </div>
     <app-login *ngIf="!mostrarMenu"></app-login>
     <div *ngIf="mostrarMenu" class="row" style="padding-top: 40px; height: 768px;">
-        <div  class="col-md-2" style="background-color: #c2cad6">
+        <div class="col-md-2" style="background-color: #c2cad6">
             <nav class=" d-none d-md-block bg-light sidebar dash">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/home">
+                                <button mat-icon-button>
+                                    <mat-icon>home</mat-icon>
+                                </button>
+                                Home
+                            </div>
+                        </li>
                         <li class="nav-item mouseMaozinha">
                             <div class="navbar-link" routerLink="/cad-pessoa">
                                 <button mat-icon-button>
@@ -54,7 +48,7 @@
                         <li class="nav-item mouseMaozinha">
                             <div class="navbar-link" routerLink="/cad-produto">
                                 <button mat-icon-button>
-                                    <mat-icon>person</mat-icon>
+                                    <mat-icon>local_mall</mat-icon>
                                 </button>
                                 Produtos
                             </div>
@@ -62,23 +56,30 @@
                         <li class="nav-item mouseMaozinha">
                             <div class="navbar-link" routerLink="/cad-fornecedor">
                                 <button mat-icon-button>
-                                    <mat-icon>person</mat-icon>
+                                    <mat-icon>local_shipping</mat-icon>
                                 </button>
                                 Fornecedor</div>
                         </li>
                         <li class="nav-item mouseMaozinha">
                             <div class="navbar-link" routerLink="/mod-vendas">
                                 <button mat-icon-button>
-                                    <mat-icon>person</mat-icon>
+                                    <mat-icon>monetization_on</mat-icon>
                                 </button>
                                 Vendas</div>
                         </li>
                         <li class="nav-item mouseMaozinha">
                             <div class="navbar-link" routerLink="/rel-vendas">
                                 <button mat-icon-button>
-                                    <mat-icon>person</mat-icon>
+                                    <mat-icon>chrome_reader_mode</mat-icon>
                                 </button>
                                 Relatório de Vendas</div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/mov-vacina">
+                                <button mat-icon-button>
+                                    <mat-icon>colorize</mat-icon>
+                                </button>
+                                Vacinas</div>
                         </li>
                     </ul>
 

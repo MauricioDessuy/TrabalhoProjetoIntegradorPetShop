@@ -16,7 +16,7 @@ export class LoginService {
   constructor(private router: Router, private http: HttpClient, private snackBar : SnackBarUtil) { }
 
   loginCorreto() {
-    this.router.navigate(['cad-pessoa']);
+    this.router.navigate(['home']);
   }
 
   logar(login : any) {

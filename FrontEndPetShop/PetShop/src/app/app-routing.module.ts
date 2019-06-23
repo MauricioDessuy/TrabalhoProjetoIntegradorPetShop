@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 import { CadPessoaComponent } from './cad-pessoa/cad-pessoa.component';
 import { PessoaFormComponent } from './cad-pessoa/pessoa-form/pessoa-form.component';
 import { CadProdutoComponent } from './cad-produto/cad-produto.component';
@@ -16,6 +17,7 @@ import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent, canActivate : [ AuthGuard ] }, 
   { path: 'cad-pessoa', component: CadPessoaComponent, canActivate : [ AuthGuard ] }, 
   { path: 'cad-pessoa/novo', component: PessoaFormComponent, canActivate : [ AuthGuard ] },
   { path: 'cad-pessoa/:id', component: PessoaFormComponent, canActivate : [ AuthGuard ] },
