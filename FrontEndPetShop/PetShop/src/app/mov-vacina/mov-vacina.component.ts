@@ -46,6 +46,7 @@ export class MovVacinaComponent implements OnInit {
 
   adicionar(frm: FormGroup) {
     this.vacina.dataVacinacao = new Date(this.vacina.dataVacinacao + ' 03:00:00 GMT');
+    this.vacina.dataVencimento = new Date(this.vacina.dataVencimento + ' 03:00:00 GMT');
     if (this.idAnimal == null) {
       this.snackBarUtil.openSnackBar("Informe o animal a ser vacinado", "OK");
       return;

@@ -13,6 +13,7 @@ import { CadFornecedorComponent } from './cad-fornecedor/cad-fornecedor.componen
 import { FornecedorFormComponent } from './cad-fornecedor/fornecedor-form/fornecedor-form.component';
 import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
 import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
+import { ControleVacinaComponent } from './controle-vacina/controle-vacina.component';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'mod-vendas', component: ModVendasComponent, canActivate : [ AuthGuard ] },
   { path: 'rel-vendas', component: RelVendasComponent, canActivate : [ AuthGuard ] },
   { path: 'mov-vacina', component: MovVacinaComponent, canActivate : [ AuthGuard ] },
+  { path: 'controle-vacina', component: ControleVacinaComponent, canActivate : [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', component: Erro404Component }

@@ -55,6 +55,7 @@ import { CirurgiaService } from './cirurgia.service';
 import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
 import { AnimalListDialog } from './cad-animal/animal-list-dialog';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
+import { ControleVacinaComponent } from './controle-vacina/controle-vacina.component';
 
 const materialModules = [
   MatButtonModule,
@@ -94,7 +95,8 @@ const materialModules = [
     //ModCirurgiaComponent
     PdfViewComponent,
     FornecedorFormComponent,
-    AnimalFormComponent
+    AnimalFormComponent,
+    ControleVacinaComponent
   ],
   imports: [
     BrowserModule,

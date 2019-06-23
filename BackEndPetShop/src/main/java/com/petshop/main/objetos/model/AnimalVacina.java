@@ -33,6 +33,18 @@ public class AnimalVacina implements Serializable {
     @Column(name = "data_vacinacao")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataVacinacao;
+    
+    @Column(name = "data_vencimento")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataVencimento;
+
+    public Date getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_animal", referencedColumnName = "id")

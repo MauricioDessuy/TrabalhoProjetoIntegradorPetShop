@@ -10,8 +10,8 @@ export class VacinaService {
 
   constructor(private http: HttpClient) { }
 
-  listar() {
-    return this.http.get<any[]>(this.vacinaUrl);
+  listar(filtro : any) {
+    return this.http.post<any[]>(this.vacinaUrl+"/listar", filtro);
   }
 
   adicionar(vacina: any) {

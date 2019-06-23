@@ -1,0 +1,77 @@
+<main role="main">
+  <section class="my-4">
+    <div class="container">
+      <h2>Controle de vacinas</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="listar()">
+        <mat-card>
+          <mat-card-title>Filtros</mat-card-title>
+          <mat-card-subtitle>Preencha os filtros que serão utilizados para a busca</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-3 form-group container80">
+                <label for="dataInicial">Data de Vacinaçao inicial</label>
+                <input type="date" id="dataInicial" name="dataInicial" class="form-control"
+                  placeholder="Data" [(ngModel)]="filtro.dataInicial" />
+              </div>
+              <div class="col-md-1">
+                <h6 class="centralizar">Á</h6>
+              </div>
+              <div class="col-md-3 form-group container80">
+                <label for="dataFinal">Data vacinação Final</label>
+                <input type="date" id="dataFinal" name="dataFinal" class="form-control"
+                  placeholder="Data" [(ngModel)]="filtro.dataFinal" />
+              </div>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+        <br>
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary"
+          [disabled]="frm.invalid">Listar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>Código</th>
+
+              <th class="w-50">Nome</th>
+
+              <th class="w-25">Vacina</th>
+
+              <th class="w-25">Data de vacinação</th>
+
+              <th class="w-25">Próxima dose</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let vacina of vacinas">
+              <td class="text-center w-25">{{vacina.id}}</td>
+
+              <td>{{vacina.animal.nome}}</td>
+
+              <td>{{vacina.produto.nome}}</td>
+
+              <td>{{vacina.dataVacinacao}}</td>
+
+              <td>{{vacina.dataVencimento}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
