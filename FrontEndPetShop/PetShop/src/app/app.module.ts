@@ -97,8 +97,7 @@ const materialModules = [
     PdfViewComponent,
     FornecedorFormComponent,
     AnimalFormComponent,
-    ControleVacinaComponent
-    AnimalFormComponent,
+    ControleVacinaComponent,
     HomeComponent
   ],
   imports: [
