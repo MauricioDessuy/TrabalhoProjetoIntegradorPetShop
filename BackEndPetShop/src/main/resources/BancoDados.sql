@@ -16,7 +16,8 @@ CREATE TABLE produtos
     id SERIAL NOT NULL PRIMARY KEY,
     marca VARCHAR(255) NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    valor_unitario REAL NOT NULL
+    valor_unitario REAL NOT NULL,
+    tipo_produto INTEGER NOT NULL DEFAULT 0
 )
 
 CREATE TABLE public.fornecedores
@@ -37,4 +38,13 @@ CREATE TABLE animals
     nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
     raca character varying(255) COLLATE pg_catalog."default" NOT NULL,
     id_pessoa bigint NOT NULL
+)
+
+create table animal_vacina(
+    id SERIAL NOT NULL primary key,
+    id_produto INTEGER NOT NULL,
+    data_vacinacao date,
+    id_animal INTEGER NOT NULL,
+    FOREIGN KEY (id_produto) REFERENCES produtos(id),
+    FOREIGN KEY (id_animal) REFERENCES animals(id)
 )

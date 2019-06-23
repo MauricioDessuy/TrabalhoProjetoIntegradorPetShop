@@ -9,9 +9,9 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(nome : any) {
+  listar(nome : any, tipo : any) {
     if (nome != null && nome != '') {
-      return this.http.get<any[]>(this.produtosUrl + "?nome=" + nome + "");
+      return this.http.get<any[]>(this.produtosUrl + "?nome=" + nome + "&tipo=" + tipo);
     } else {
       return this.http.get<any[]>(this.produtosUrl);
     }

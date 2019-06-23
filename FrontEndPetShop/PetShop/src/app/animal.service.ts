@@ -31,8 +31,5 @@ export class AnimalService {
   alterar(animal : any) {
     return this.http.put<any>(this.animalsUrl + '/' + animal.id, animal);
   }
-  buscar(id : any) {
-    return this.http.get<any>(this.animalsUrl + '/' + id);
-  }
 
 }

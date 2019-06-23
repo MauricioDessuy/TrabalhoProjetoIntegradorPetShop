@@ -17,6 +17,7 @@ export class ProdutoListDialog {
     produtos: Array<any>;
     idProdutoSelecionada: any;
     filtro: any;
+    tipo : any;
 
     constructor(
         public dialogRef: MatDialogRef<ProdutoListDialog>,
@@ -31,12 +32,12 @@ export class ProdutoListDialog {
     }
 
     listar() {
-        this.produtoService.listar('').subscribe(dados => this.produtos = dados);
+        this.produtoService.listar('', this.tipo).subscribe(dados => this.produtos = dados);
     }
 
     teclaDigitada(event) {
         if (event.key === "Enter") {
-            this.produtoService.listar(this.filtro.nome).subscribe(dados => this.produtos = dados);
+            this.produtoService.listar(this.filtro.nome, this.tipo).subscribe(dados => this.produtos = dados);
         }
     }
 }
