@@ -46,3 +46,19 @@
 .centralizarVertical > * {
     margin-top: 15%;
 }
+
+.dash > * {
+    left: 0;
+    position: fixed;
+}
+
+.mouseMaozinha:hover > * {
+    cursor: pointer;
+    color: white;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+li.mouseMaozinha > * {
+    width: 116%;
+}
