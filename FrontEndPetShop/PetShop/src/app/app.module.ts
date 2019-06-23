@@ -50,6 +50,10 @@ import { RelVendasComponent } from './rel-vendas/rel-vendas.component';
 import { PdfViewComponent } from './pdf-view/pdf-view.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { from } from 'rxjs';
+import { ModCirurgiaComponent } from './mod-cirurgia/mod-cirurgia.component';
+import { CirurgiaService } from './cirurgia.service';
+import { MovVacinaComponent } from './mov-vacina/mov-vacina.component';
+import { AnimalListDialog } from './cad-animal/animal-list-dialog';
 import { AnimalFormComponent } from './cad-animal/animal-form/animal-form.component';
 
 const materialModules = [
@@ -85,6 +89,11 @@ const materialModules = [
     RelVendasComponent,
     PdfViewComponent,
     FornecedorFormComponent,
+    MovVacinaComponent,
+    AnimalListDialog,
+    //ModCirurgiaComponent
+    PdfViewComponent,
+    FornecedorFormComponent,
     AnimalFormComponent
   ],
   imports: [
@@ -109,6 +118,6 @@ const materialModules = [
   providers: [ TutorService, PessoaService, LoginService, ProdutoService, AuthGuard, AnimalService, 
     FornecedorService, SnackBarUtil, VendaService, PdfViewerModule, PdfViewComponent ],
   bootstrap: [AppComponent],
-  entryComponents: [PessoaListDialog, ProdutoListDialog],
+  entryComponents: [PessoaListDialog, ProdutoListDialog, AnimalListDialog],
 })
 export class AppModule { }
