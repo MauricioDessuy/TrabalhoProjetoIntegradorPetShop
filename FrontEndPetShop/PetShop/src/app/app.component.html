@@ -5,17 +5,17 @@
     <div *ngIf="mostrarMenu" class="row">
         <nav class="navbar navbar-primary fixed-top bg-primary navbar-expand-lg flex-md-nowrap p-0 shadow">
             <div class="col-md-4">
-                <a class="navbar-brand" style="color: white" href="#">Dashboard</a>
+                <a class="navbar-brand" style="color: white" routerLink="/home"><b>Sistema de Clínica e Petshop</b></a>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
 
             </div>
-            <div class="col-md-1">
-                <button style="z-index: 1" class="btn btn-outline-dark" mat-button [matMenuTriggerFor]="menu">
-                    <b style="color: white"> Username</b>
+            <div class="col-md-2" style="align-content: flex-end">
+                <button style="z-index: 1; width: 200px" class="btn btn-outline-dark" mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon style="color: white">person</mat-icon><b style="color: white"> {{nomeUsuarioLogado}}</b>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
+                    <button mat-menu-item (click)="deslogar()">
                         <mat-icon>exit_to_app</mat-icon>
                         <span>Logout</span>
                     </button>
@@ -79,7 +79,14 @@
                                 <button mat-icon-button>
                                     <mat-icon>colorize</mat-icon>
                                 </button>
-                                Vacinas</div>
+                                Vacinação</div>
+                        </li>
+                        <li class="nav-item mouseMaozinha">
+                            <div class="navbar-link" routerLink="/controle-vacina">
+                                <button mat-icon-button>
+                                    <mat-icon>calendar_today</mat-icon>
+                                </button>
+                                Controle de Vacinas</div>
                         </li>
                     </ul>
 

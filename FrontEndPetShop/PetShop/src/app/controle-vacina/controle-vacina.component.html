@@ -1,6 +1,6 @@
 <main role="main">
   <section class="my-4">
-    <div class="container">
+    <div class="container centralizar">
       <h2>Controle de vacinas</h2>
     </div>
   </section>
@@ -64,9 +64,9 @@
 
               <td>{{vacina.produto.nome}}</td>
 
-              <td>{{vacina.dataVacinacao}}</td>
+              <td>{{vacina.dataVacinacao | date:'dd/MM/yyyy' }}</td>
 
-              <td>{{vacina.dataVencimento}}</td>
+              <td>{{vacina.dataVencimento | date:'dd/MM/yyyy' }}</td>
 
             </tr>
           </tbody>

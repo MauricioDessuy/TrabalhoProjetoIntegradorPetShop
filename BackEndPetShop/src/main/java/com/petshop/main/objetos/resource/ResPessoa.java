@@ -97,4 +97,13 @@ public class ResPessoa {
         boolean exists = pessoaDAO.exists(example);
         return exists;
     }
+    
+    @PostMapping("/getnome")
+    public Pessoa getNome(@RequestBody Pessoa pessoa) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("usuario", GenericPropertyMatchers.ignoreCase()).withMatcher("senha", GenericPropertyMatchers.ignoreCase());
+        Example<Pessoa> example = Example.<Pessoa>of(pessoa, matcher);
+        Pessoa pessoaBanco = pessoaDAO.findOne(example);;
+        return pessoaBanco;
+    }
 }
